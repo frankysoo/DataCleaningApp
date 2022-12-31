@@ -1,0 +1,8 @@
+1f4ff31e7979a525dea2d4e14ee8a82f38791fbc commit	refs/heads/development
+61bb90cce8703034dd8cbd46b45865c01fa2402a commit	refs/heads/fixed-history
+4f59de9c0aed971cfbb8b403101895733e14d542 commit	refs/heads/main
+61bb90cce8703034dd8cbd46b45865c01fa2402a commit	refs/heads/new-main
+1dcdc7f79cb4b99906755d84768f3178b1c5a943 commit	refs/heads/temp-branch
+1f4ff31e7979a525dea2d4e14ee8a82f38791fbc commit	refs/remotes/origin/development
+61bb90cce8703034dd8cbd46b45865c01fa2402a commit	refs/remotes/origin/main
+702301f57f05c8f0ceaccdbe261b9fd356603083 commit	refs/replit/agent-ledger

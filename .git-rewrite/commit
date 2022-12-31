@@ -1,0 +1,6 @@
+tree 364aac0fe3d6dfbd39c8818e8b5690b59127198e
+parent 653d1157c9a38a837b2022692ca92ee00674d1f2
+author frankysoo <your.email@example.com> 1659210556 +0100
+committer frankysoo <your.email@example.com> 1659210556 +0100
+
+Optimize chunked file reading
