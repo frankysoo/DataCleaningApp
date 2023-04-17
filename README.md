@@ -270,6 +270,8 @@ Thanks to all the open-source libraries that made this project possible:
 - Pandas: Data processing
 - Bootstrap: UI components
 - Chart.js: Data visualization
+- NumPy: Numerical computing
+- SQLAlchemy: Database ORM
 
 <!-- Updated documentation: 2025-04-17 20:28:34 -->
 
