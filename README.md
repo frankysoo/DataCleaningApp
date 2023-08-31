@@ -258,6 +258,10 @@ I've been developing this tool over the past two years as part of my data scienc
 
 Feel free to reach out with any questions or suggestions for improvement!
 
+## 📝 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
 <!-- Updated documentation: 2025-04-17 20:28:34 -->
 
 <!-- Updated documentation: 2025-04-17 20:28:36 -->
