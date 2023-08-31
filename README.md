@@ -262,6 +262,10 @@ Feel free to reach out with any questions or suggestions for improvement!
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
+## 🙏 Acknowledgements
+
+Thanks to all the open-source libraries that made this project possible.
+
 <!-- Updated documentation: 2025-04-17 20:28:34 -->
 
 <!-- Updated documentation: 2025-04-17 20:28:36 -->
