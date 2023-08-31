@@ -1,5 +1,8 @@
 # DataCleaningApp: Advanced Data Processing Tool
 
+[![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)](https://github.com/frankysoo/DataCleaningApp)
+[![Status](https://img.shields.io/badge/Status-Active-green.svg)](https://github.com/frankysoo/DataCleaningApp)
+
 A powerful and intuitive Flask web application I've developed for uploading, merging, and cleaning CSV/Excel files using advanced Pandas techniques. This application offers intelligent data preprocessing with a beautiful, user-friendly interface and robust backend processing capabilities, capable of handling files up to 400MB in size.
 
 ## 📋 Table of Contents
