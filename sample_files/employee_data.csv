@@ -1,0 +1,101 @@
+EmployeeID,Name,Email,Phone,Department,HireDate,Salary,IsActive
+1,Robert Smith,employee_1@example.com,829.889.5259,Sales,2024-10-06,129536,TRUE
+2,Emma Smith,employee_2@example.com,+1 (736)-231-9284,Finance,07-Oct-2019,"$80,386",FALSE
+3,Sarah Brown,employee_3@example.com,+1 (518)-654-3012,,06-Dec-2021,"$134,450",0
+4,Michael Davis,employee_4@example.com,+1 (608)-816-2256,Sales,2023-11-29,"$142,269",0
+5,Sarah Johnson,employee_5@example.com,+1 (973)-734-2096,Marketing,06/22/2019,"$77,401",N
+6,Robert Williams,employee_6@example.com,+1 (539)-956-8289,Operations,2025-04-01,141970,1
+7,Michael Jones,employee_7@example.com,503.613.9094,Operations,2019-04-25,"$139,431",TRUE
+8,Robert Smith,employee_8@example.com,+1 (123)-889-6228,Operations,07/30/2019,"$97,279",0
+9,Robert Davis,employee_9@example.com,+1 (625)-699-3724,HR,01/06/2020,"$75,443",0
+10,Maria Jones,EMPLOYEE_10@EXAMPLE.COM,+1 (732)-942-7652,IT,06/02/2024,"$62,506",0
+11,Sarah Jones,employee_11@example.com,+1 (498)-174-4779,Finance,01/30/2020,98331,FALSE
+12,Michael Jones,employee_12@example.com,+1 (874)-688-5224,Operations,26-Mar-2018,,FALSE
+13,Maria Williams,employee_13@example.com,705.458.1564,IT,04/28/2023,"$53,637",FALSE
+14,Sarah Davis,employee_14@example.com,+1 (511)-552-8220,IT,10-Dec-2023,"$91,731",No
+15,Michael Brown,employee_15@example.com,+1 (427)-779-8474,Marketing,08/14/2017,"$85,453",Y
+16,Maria Johnson,employee_16@example.com,+1 (689)-706-1640,HR,2024-03-03,122067,N
+17,Maria Jones,employee_17@example.com,+1 (569)-795-7395,Finance,2023-03-07,"$140,982",1
+18,Robert Johnson,employee_18@example.com,+1 (687)-259-1525,HR,05-May-2015,"$98,859",
+19,Emma Johnson,employee_19@example.com,381.225.7137,Finance,2024-08-29,"$43,828",FALSE
+20,Robert Williams,EMPLOYEE_20@EXAMPLE.COM,+1 (637)-801-9143,IT,20-Dec-2021,"$122,723",TRUE
+21,John Jones,employee_21@example.com,+1 (375)-193-6367,IT,2025-02-07,139562,
+22,Robert Brown,employee_22@example.com,+1 (253)-620-1473,Operations,2021-09-04,"$109,151",No
+23,Emma Smith,employee_23@example.com,+1 (933)-323-4504,Finance,12/25/2023,"$74,680",FALSE
+24,Robert Smith,employee_24@example.com,+1 (225)-212-2448,Operations,04/20/2019,"$117,502",Yes
+25,Maria Jones,employee_25@example.com,,IT,2019-06-10,"$50,216",No
+26,Michael Smith,employee_26@example.com,+1 (818)-682-1673,Sales,05/25/2017,97035,FALSE
+27,Robert Williams,employee_27@example.com,+1 (392)-277-5054,Sales,02/18/2023,"$32,189",
+28,Sarah Johnson,employee_28@example.com,+1 (785)-780-1519,,07/26/2024,"$98,956",1
+29,Sarah Johnson,,+1 (453)-962-8327,HR,11/18/2021,"$79,0",TRUE
+30,Emma Brown,EMPLOYEE_30@EXAMPLE.COM,+1 (955)-573-3543,Marketing,09/16/2022,"$106,672",1
+31,Robert Davis,employee_31@example.com,432.371.2092,Finance,2018-04-14,37273,TRUE
+32,Emma Williams,employee_32@example.com,+1 (244)-133-2308,HR,2018-10-31,"$130,844",N
+33,Maria Johnson,,+1 (659)-643-7363,Sales,10/02/2023,"$103,613",Yes
+34,Michael Johnson,employee_34@example.com,+1 (625)-463-9822,Marketing,2023-04-09,"$103,7",Y
+35,Maria Johnson,employee_35@example.com,,Finance,2021-07-22,"$34,158",Y
+36,John Jones,employee_36@example.com,+1 (972)-768-4028,Finance,,71475,Yes
+37,Robert Davis,employee_37@example.com,291.569.6690,Sales,12-Nov-2021,"$58,837",No
+38,Emma Smith,employee_38@example.com,+1 (156)-962-4987,Finance,2019-01-06,"$50,508",FALSE
+39,Sarah Williams,employee_39@example.com,+1 (195)-492-2555,Operations,06/13/2022,"$123,717",Yes
+40,John Brown,EMPLOYEE_40@EXAMPLE.COM,+1 (695)-748-6912,Finance,06-Sep-2019,"$115,996",N
+41,Michael Johnson,employee_41@example.com,+1 (652)-908-9043,Marketing,2019-12-04,87929,0
+42,Sarah Williams,employee_42@example.com,+1 (964)-652-5097,Operations,2017-07-24,,No
+43,Maria Brown,employee_43@example.com,655.606.9390,Sales,2020-05-05,"$148,740",Y
+44,Emma Jones,employee_44@example.com,+1 (366)-516-1907,IT,03-Mar-2023,"$89,977",Y
+45,Emma Johnson,employee_45@example.com,+1 (907)-982-7699,Operations,2021-08-12,"$49,169",Y
+46,Sarah Johnson,employee_46@example.com,+1 (910)-413-3138,IT,15-Jun-2018,110716,No
+47,Robert Williams,employee_47@example.com,+1 (807)-713-5776,HR,2019-12-15,"$124,250",TRUE
+48,Sarah Williams,employee_48@example.com,+1 (121)-178-2632,Marketing,03/20/2023,"$106,98",Yes
+49,Robert Williams,employee_49@example.com,826.582.1846,Sales,,"$142,762",No
+50,John Brown,EMPLOYEE_50@EXAMPLE.COM,+1 (492)-365-6826,Operations,2024-07-15,"$38,581",TRUE
+51,Sarah Johnson,employee_51@example.com,+1 (419)-961-2162,HR,11/19/2020,97647,No
+52,Michael Jones,employee_52@example.com,+1 (300)-238-2690,Operations,11-Nov-2020,"$82,215",N
+53,Maria Johnson,employee_53@example.com,+1 (147)-282-7659,Operations,21-Jun-2022,"$101,534",No
+54,John Williams,employee_54@example.com,+1 (213)-236-7925,IT,02-Nov-2022,"$74,402",No
+55,Sarah Smith,employee_55@example.com,850.944.5289,Finance,2019-08-31,"$142,216",FALSE
+56,Michael Brown,employee_56@example.com,,IT,12/14/2023,148619,
+57,John Davis,employee_57@example.com,+1 (230)-716-1113,Finance,12/03/2018,"$78,331",Y
+58,Robert Smith,employee_58@example.com,+1 (807)-877-5575,,24-May-2023,"$149,49",0
+59,Maria Williams,employee_59@example.com,+1 (726)-186-2781,Finance,2016-04-15,"$108,108",Yes
+60,Maria Williams,EMPLOYEE_60@EXAMPLE.COM,+1 (356)-422-2119,Sales,03-Oct-2020,"$31,543",FALSE
+61,Emma Smith,employee_61@example.com,428.534.1034,Operations,04-Dec-2022,60896,N
+62,Michael Smith,employee_62@example.com,,Operations,2019-05-24,"$55,944",TRUE
+63,John Davis,employee_63@example.com,+1 (878)-947-7149,Sales,09/26/2021,"$124,549",TRUE
+64,Maria Smith,employee_64@example.com,+1 (306)-692-9731,Sales,,"$115,537",No
+65,Michael Williams,employee_65@example.com,+1 (255)-736-7472,Marketing,2019-06-27,"$108,717",Yes
+66,John Brown,employee_66@example.com,+1 (627)-237-4550,Marketing,24-Oct-2017,83791,Y
+67,Robert Brown,employee_67@example.com,123.498.9322,Marketing,2021-06-14,"$118,290",1
+68,Sarah Brown,employee_68@example.com,+1 (491)-215-3044,IT,04/11/2019,,No
+69,Maria Jones,employee_69@example.com,+1 (555)-216-1137,IT,2024-09-16,"$46,673",N
+70,Emma Smith,EMPLOYEE_70@EXAMPLE.COM,+1 (823)-112-2211,Sales,29-Jun-2015,"$120,861",0
+71,Michael Brown,employee_71@example.com,+1 (269)-985-1996,Sales,31-May-2020,133495,FALSE
+72,Emma Johnson,employee_72@example.com,+1 (655)-758-2781,HR,2021-06-21,"$131,661",No
+73,Michael Johnson,employee_73@example.com,329.487.7144,Operations,2020-04-07,"$80,950",N
+74,John Smith,employee_74@example.com,+1 (307)-500-4559,Operations,16-Apr-2024,"$44,571",Yes
+75,John Williams,employee_75@example.com,+1 (778)-227-7970,Sales,2017-10-13,"$107,916",0
+76,Maria Williams,employee_76@example.com,+1 (714)-395-9635,Finance,2016-07-01,133553,0
+77,Robert Brown,employee_77@example.com,+1 (130)-941-5980,Finance,2021-08-13,"$106,85",N
+78,Sarah Jones,employee_78@example.com,+1 (919)-646-2278,Marketing,11-Mar-2025,"$130,129",N
+79,Maria Williams,employee_79@example.com,505.150.7981,Finance,09/06/2022,"$111,883",1
+80,Emma Davis,,+1 (270)-455-4147,Finance,2022-07-29,"$36,732",Y
+81,John Jones,employee_81@example.com,+1 (918)-233-7642,IT,08/20/2018,81682,N
+82,Maria Jones,employee_82@example.com,+1 (178)-773-9668,IT,02-Jun-2022,"$32,194",Yes
+83,Robert Smith,employee_83@example.com,+1 (947)-568-2970,Marketing,04/27/2024,"$59,651",No
+84,Sarah Brown,employee_84@example.com,+1 (432)-319-4623,Finance,12/28/2024,"$63,494",No
+85,Robert Jones,employee_85@example.com,856.960.4928,Operations,12-Oct-2018,"$133,115",FALSE
+86,Robert Johnson,employee_86@example.com,+1 (167)-185-1910,HR,2024-05-10,76666,FALSE
+87,,employee_87@example.com,+1 (830)-941-1733,Marketing,01/20/2018,"$108,714",0
+88,Maria Brown,employee_88@example.com,+1 (894)-753-1311,,03/01/2019,"$109,923",Y
+89,Sarah Davis,employee_89@example.com,+1 (407)-963-3205,Operations,18-Feb-2017,"$100,310",TRUE
+90,Michael Johnson,EMPLOYEE_90@EXAMPLE.COM,+1 (571)-845-3712,Sales,2021-04-18,"$65,624",TRUE
+91,Michael Brown,employee_91@example.com,732.982.2663,Sales,24-Jan-2021,90654,0
+92,Maria Johnson,employee_92@example.com,+1 (471)-991-4487,Finance,01/06/2020,"$117,885",TRUE
+93,Robert Williams,employee_93@example.com,+1 (723)-393-8570,Finance,08/28/2024,"$113,213",0
+94,Robert Jones,employee_94@example.com,+1 (572)-954-8986,Sales,13-Aug-2022,"$79,543",Y
+95,Emma Williams,employee_95@example.com,+1 (479)-299-1865,HR,08/02/2023,"$58,495",FALSE
+96,Robert Johnson,employee_96@example.com,+1 (705)-931-6323,Finance,2021-08-10,110140,0
+97,Michael Williams,employee_97@example.com,892.814.3647,HR,19-May-2015,"$33,28",Y
+98,John Davis,employee_98@example.com,+1 (116)-815-1028,Finance,05-Sep-2021,"$84,942",1
+99,Sarah Brown,employee_99@example.com,+1 (913)-715-1084,Operations,2020-11-28,"$90,531",FALSE
+100,Emma Johnson,EMPLOYEE_100@EXAMPLE.COM,+1 (457)-122-6269,Sales,23-Sep-2023,"$44,866",FALSE

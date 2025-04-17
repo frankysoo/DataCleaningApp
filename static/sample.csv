@@ -1,0 +1,16 @@
+id,name,age,email,department,salary,hire_date
+1,John Smith,32,john.smith@example.com,Engineering,75000,2018-03-15
+2,Mary Johnson,28,mary.j@example.com,Marketing,68000,2019-06-22
+3,Robert Brown,45,robert.b@example.com,Finance,92000,2010-11-05
+4,Sarah Williams,,sarah.w@example.com,Human Resources,65000,2020-01-10
+5,Michael Jones,37,michael.j@example.com,Engineering,78000,2017-08-30
+6,Jennifer Davis,29,,Marketing,69500,2019-02-18
+7,David Miller,41,david.m@example.com,,88000,2015-07-14
+8,Lisa Garcia,33,lisa.g@example.com,Finance,72000,2018-09-05
+9,James Martinez,39,james.m@example.com,Engineering,81000,2016-04-23
+10,Patricia Robinson,31,patricia.r@example.com,Marketing,67000,2019-10-15
+11,john Smith,32,john.smith2@example.com,Engineering,75000,2018-03-15
+12,,28,mary.z@example.com,Marketing,68000,
+13,Robert Brown,45,robert.b@example.com,Finance,92000,2010-11-05
+14,Tom Johnson,34,tom.j@example.com,Engineering,,2017-05-20
+15,Susan Baker,42,susan.b@example.com,Human Resources,70000,2016-12-08

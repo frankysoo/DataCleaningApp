@@ -1,0 +1,33 @@
+transaction_id,customer_name,product_id,quantity,amount,payment_method,transaction_date,status,store_location,discount_applied
+1,John Smith,1,1,1200.5,Credit Card,2023-08-01,Completed,New York,0
+2,Jane  Doe,2,2,1799.98,credit card,8/3/2023, completed ,Los Angeles,10
+3,Robert Brown,3,,450,Debit Card,08-05-2023,Pending,Chicago,5
+4,LISA WILSON,4,1,350,DEBIT CARD,2023/08/07,COMPLETED,Houston,0
+5,david miller,5,1,350,Cash,2023-08-10,Cancelled,Phoenix,15
+6,Sarah Johnson,6,2,159.98,credit card,8/12/2023,completed,Philadelphia,0
+7,Michael  Jones,7,1,49.99,Cash,08-14-2023,PENDING,San Antonio,5
+8,Emily Davis,8,3,360,PayPal,2023/08/16,Completed,San Diego,0
+9,James Rodriguez,9,1,200,paypal,2023-08-18,Cancelled,Dallas,10
+10,Jessica Martinez,10,1,650,Credit Card,8/20/2023,Completed,San Jose,0
+11,Thomas Anderson,1,2,2401,Credit Card,08-22-2023,,Austin,15
+12,Jennifer Taylor,2,1,899.99,Debit Card,2023/08/24,Completed,Jacksonville,0
+13,Christopher Lee,3,2,900,Cash,2023-08-26,Pending,Fort Worth,5
+14,Amanda Harris,4,1,350,Debit Card,8/28/2023,Completed,Columbus,0
+15,Brian Williams,5,,350,Credit Card,08-30-2023,Cancelled,Indianapolis,10
+16,Mary Clark,6,2,159.98,PayPal,,Completed,Charlotte,0
+17,Kevin Wright,7,1,49.99,Cash,2023-09-03,Pending,San Francisco,5
+18,Susan Allen,8,1,120,Credit Card,9/5/2023,Completed,Seattle,0
+19,Matthew King,9,3,600,Debit Card,09-07-2023,,Denver,15
+20,Elizabeth Scott,10,2,1300,PayPal,2023/09/09,Completed,Washington,0
+21,John  Smith,11,1 unit,$499.99,CC,"Aug 1, 2023",C,NY,0%
+22,J. Doe,12,Two,USD 299,DC,"August 3rd, 2023",P,LA,10%
+23,Rob Brown,13,3,€129.99,CSH,5 Aug 2023,X,CHI,5%
+24,Lisa W.,14,,¥1099,PP,7th Aug,C,HOU,0%
+25,D. Miller,15,5 pcs,"210,50 EUR",CC,10/08/23,P,PHX,15%
+26,S. Johnson,16,1,$499.99,DC,12/08/23,C,PHL,0%
+27,M. Jones,17,2,$299.99,CSH,14 Aug,P,SA,5%
+28,E. Davis,18,3,€129.99,PP,16 August,C,SD,0%
+29,J. Rodriguez,19,4,¥1099,CC,Aug 18,X,DAL,10%
+30,J. Martinez,20,5,"210,50",DC,20.08.2023,C,SJ,0%
+,,,,,,,,,
+,,,,,,,,,

@@ -1,0 +1,979 @@
+document.addEventListener('DOMContentLoaded', function() {
+    // DOM elements
+    const uploadForm = document.getElementById('upload-form');
+    const fileInput = document.getElementById('fileInput');
+    const statusContainer = document.getElementById('status-container');
+    const statusDiv = document.getElementById('status');
+    const spinner = document.getElementById('spinner');
+    const downloadContainer = document.getElementById('download-container');
+    const downloadArea = document.getElementById('download-area');
+    const downloadInfo = document.getElementById('download-info');
+    
+    // Add cleaning options UI elements
+    let cleaningOptionsContainer = document.getElementById('cleaning-options-container');
+    if (!cleaningOptionsContainer) {
+        cleaningOptionsContainer = document.createElement('div');
+        cleaningOptionsContainer.id = 'cleaning-options-container';
+        cleaningOptionsContainer.className = 'card shadow-sm mb-4';
+        cleaningOptionsContainer.innerHTML = `
+            <div class="card-header bg-success bg-opacity-10">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2 class="h5 card-title mb-0">
+                        <i class="fas fa-sliders me-2"></i>Cleaning Options
+                    </h2>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" 
+                        data-bs-toggle="collapse" data-bs-target="#cleaningOptionsCollapse" 
+                        aria-expanded="true" aria-controls="cleaningOptionsCollapse">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="collapse show" id="cleaningOptionsCollapse">
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="removeNulls" name="removeNulls" checked>
+                                <label class="form-check-label" for="removeNulls">Remove null rows</label>
+                                <small class="form-text text-muted d-block">Drop rows where all values are empty</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="removeDuplicates" name="removeDuplicates" checked>
+                                <label class="form-check-label" for="removeDuplicates">Remove duplicates</label>
+                                <small class="form-text text-muted d-block">Eliminate duplicate rows</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="standardizeText" name="standardizeText" checked>
+                                <label class="form-check-label" for="standardizeText">Standardize text</label>
+                                <small class="form-text text-muted d-block">Convert categories to lowercase</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="fillNumerics" name="fillNumerics" checked>
+                                <label class="form-check-label" for="fillNumerics">Fill missing values</label>
+                                <small class="form-text text-muted d-block">Fill numeric nulls with 0, text with empty string</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="fixDates" name="fixDates" checked>
+                                <label class="form-check-label" for="fixDates">Fix date formats</label>
+                                <small class="form-text text-muted d-block">Convert date-like text to proper dates</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="trimWhitespace" name="trimWhitespace" checked>
+                                <label class="form-check-label" for="trimWhitespace">Trim whitespace</label>
+                                <small class="form-text text-muted d-block">Remove leading/trailing spaces</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="fixPhoneNumbers" name="fixPhoneNumbers" checked>
+                                <label class="form-check-label" for="fixPhoneNumbers">Fix phone numbers</label>
+                                <small class="form-text text-muted d-block">Standardize phone number formats</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="fixEmails" name="fixEmails" checked>
+                                <label class="form-check-label" for="fixEmails">Fix email addresses</label>
+                                <small class="form-text text-muted d-block">Standardize and validate emails</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="fixBooleanValues" name="fixBooleanValues" checked>
+                                <label class="form-check-label" for="fixBooleanValues">Fix boolean values</label>
+                                <small class="form-text text-muted d-block">Standardize yes/no, true/false values</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="extractNumericFromText" name="extractNumericFromText" checked>
+                                <label class="form-check-label" for="extractNumericFromText">Extract numeric values</label>
+                                <small class="form-text text-muted d-block">Extract numbers from currency and formatted text</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="normalizeText" name="normalizeText">
+                                <label class="form-check-label" for="normalizeText">Normalize text</label>
+                                <small class="form-text text-muted d-block">Remove accents, standardize encodings</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        // Insert after the form 
+        uploadForm.parentNode.insertBefore(cleaningOptionsContainer, uploadForm.nextSibling);
+    }
+    
+    // Add new DOM elements for data preview
+    let previewContainer = document.getElementById('preview-container');
+    if (!previewContainer) {
+        previewContainer = document.createElement('div');
+        previewContainer.id = 'preview-container';
+        previewContainer.className = 'card shadow-sm mb-4 d-none';
+        previewContainer.innerHTML = `
+            <div class="card-header bg-info bg-opacity-25">
+                <h2 class="h5 card-title mb-0">
+                    <i class="fas fa-table me-2"></i>Data Preview
+                </h2>
+            </div>
+            <div class="card-body">
+                <ul class="nav nav-tabs" id="previewTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="original-tab" data-bs-toggle="tab" 
+                            data-bs-target="#original-data" type="button" role="tab" 
+                            aria-controls="original-data" aria-selected="true">Original Data</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="cleaned-tab" data-bs-toggle="tab" 
+                            data-bs-target="#cleaned-data" type="button" role="tab" 
+                            aria-controls="cleaned-data" aria-selected="false">Cleaned Data</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="stats-tab" data-bs-toggle="tab" 
+                            data-bs-target="#stats-data" type="button" role="tab" 
+                            aria-controls="stats-data" aria-selected="false">Statistics</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="viz-tab" data-bs-toggle="tab" 
+                            data-bs-target="#viz-data" type="button" role="tab" 
+                            aria-controls="viz-data" aria-selected="false">Visualization</button>
+                    </li>
+                </ul>
+                <div class="tab-content pt-3" id="previewTabsContent">
+                    <div class="tab-pane fade show active" id="original-data" role="tabpanel" 
+                        aria-labelledby="original-tab">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-striped" id="original-table">
+                                <thead><tr></tr></thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="cleaned-data" role="tabpanel" 
+                        aria-labelledby="cleaned-tab">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-striped" id="cleaned-table">
+                                <thead><tr></tr></thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="stats-data" role="tabpanel" 
+                        aria-labelledby="stats-tab">
+                        <div id="stats-container" class="row row-cols-1 row-cols-md-3 g-4">
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="viz-data" role="tabpanel" 
+                        aria-labelledby="viz-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        <h5>Data Reduction</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="rowReductionChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        <h5>Cleaning Operations</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="cleaningOperationsChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        // Insert before download container
+        if (downloadContainer && downloadContainer.parentNode) {
+            downloadContainer.parentNode.insertBefore(previewContainer, downloadContainer);
+        } else {
+            console.warn('Download container not found in DOM');
+            document.body.appendChild(previewContainer);
+        }
+    }
+
+    // Form validation
+    function validateForm() {
+        if (!fileInput || !fileInput.files || fileInput.files.length === 0) {
+            showStatus('Please select at least one file.', 'error');
+            return false;
+        }
+
+        // Check file types
+        let valid = true;
+        const allowedTypes = [
+            'text/csv',
+            'application/vnd.ms-excel',
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        ];
+        
+        for (let i = 0; i < fileInput.files.length; i++) {
+            const file = fileInput.files[i];
+            const fileExtension = file.name.split('.').pop().toLowerCase();
+            const isAllowedExtension = ['csv', 'xls', 'xlsx'].includes(fileExtension);
+            const isAllowedType = allowedTypes.includes(file.type);
+            
+            if (!isAllowedExtension && !isAllowedType) {
+                showStatus(`File "${file.name}" is not a supported format. Please use CSV or Excel files only.`, 'error');
+                valid = false;
+                break;
+            }
+        }
+        
+        return valid;
+    }
+
+    // Show status with appropriate styling
+    function showStatus(message, type = 'info') {
+        if (!statusContainer || !statusDiv) {
+            console.error('Status container or div not found');
+            return;
+        }
+        
+        statusContainer.classList.remove('d-none');
+        statusDiv.textContent = message;
+        statusDiv.className = `alert fade-in d-block alert-${type === 'error' ? 'danger' : type === 'success' ? 'success' : 'info'}`;
+    }
+
+    // Show/hide spinner
+    function toggleSpinner(show) {
+        if (!spinner) {
+            console.error('Spinner element not found');
+            return;
+        }
+        
+        if (show) {
+            spinner.classList.remove('d-none');
+        } else {
+            spinner.classList.add('d-none');
+        }
+    }
+
+    // Generate table from data
+    function renderTable(tableId, data, columns) {
+        const table = document.getElementById(tableId);
+        if (!table) {
+            console.error(`Table element with ID "${tableId}" not found`);
+            return;
+        }
+        
+        // Ensure table has thead and tbody
+        let thead = table.querySelector('thead');
+        let tbody = table.querySelector('tbody');
+        
+        // Create thead if it doesn't exist
+        if (!thead) {
+            thead = document.createElement('thead');
+            table.appendChild(thead);
+        }
+        
+        // Create tr in thead if it doesn't exist
+        let headerRow = thead.querySelector('tr');
+        if (!headerRow) {
+            headerRow = document.createElement('tr');
+            thead.appendChild(headerRow);
+        }
+        
+        // Create tbody if it doesn't exist
+        if (!tbody) {
+            tbody = document.createElement('tbody');
+            table.appendChild(tbody);
+        }
+        
+        // Clear existing content
+        headerRow.innerHTML = '';
+        tbody.innerHTML = '';
+        
+        // Check for valid data and columns
+        if (!data || !Array.isArray(data) || !columns || !Array.isArray(columns)) {
+            console.error(`Invalid data or columns for table "${tableId}"`, {data, columns});
+            return;
+        }
+        
+        // Add headers
+        columns.forEach(column => {
+            const th = document.createElement('th');
+            th.textContent = column;
+            th.scope = 'col';
+            headerRow.appendChild(th);
+        });
+        
+        // Add data rows
+        data.forEach(row => {
+            const tr = document.createElement('tr');
+            columns.forEach(column => {
+                const td = document.createElement('td');
+                let cellValue = '';
+                
+                if (typeof row[column] !== 'undefined') {
+                    // Format date values nicely
+                    if (String(row[column]).match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/)) {
+                        cellValue = new Date(row[column]).toLocaleString();
+                    } else {
+                        cellValue = row[column];
+                    }
+                }
+                
+                td.textContent = cellValue;
+                tr.appendChild(td);
+            });
+            tbody.appendChild(tr);
+        });
+    }
+    
+    // Render statistics cards
+    function renderStats(stats) {
+        // Ensure stats are valid
+        if (!stats || typeof stats !== 'object') {
+            console.error('Invalid statistics data', stats);
+            return;
+        }
+        
+        const container = document.getElementById('stats-container');
+        if (!container) {
+            console.error('Stats container element not found');
+            return;
+        }
+        
+        // Clear container
+        container.innerHTML = '';
+        
+        // Use safe values for all stats properties
+        const safeStats = {
+            original_rows: parseInt(stats.original_rows || 0),
+            cleaned_rows: parseInt(stats.cleaned_rows || 0),
+            columns: parseInt(stats.columns || 0),
+            missing_values_filled: parseInt(stats.missing_values_filled || 0),
+            duplicates_removed: parseInt(stats.duplicates_removed || 0),
+            nulls_removed: parseInt(stats.nulls_removed || 0),
+            dates_fixed: parseInt(stats.dates_fixed || 0),
+            numerics_fixed: parseInt(stats.numerics_fixed || 0),
+            phone_numbers_fixed: parseInt(stats.phone_numbers_fixed || 0),
+            emails_fixed: parseInt(stats.emails_fixed || 0),
+            booleans_fixed: parseInt(stats.booleans_fixed || 0),
+            extracted_numeric_values: parseInt(stats.extracted_numeric_values || 0)
+        };
+        
+        // Create stat cards
+        const statsCards = [
+            {
+                title: 'Rows Processed',
+                value: safeStats.original_rows,
+                icon: 'fa-table',
+                color: 'info'
+            },
+            {
+                title: 'Final Rows',
+                value: safeStats.cleaned_rows,
+                icon: 'fa-table-list',
+                color: 'success'
+            },
+            {
+                title: 'Columns',
+                value: safeStats.columns,
+                icon: 'fa-columns',
+                color: 'primary'
+            },
+            {
+                title: 'Missing Values Filled',
+                value: safeStats.missing_values_filled,
+                icon: 'fa-question-circle',
+                color: 'warning'
+            },
+            {
+                title: 'Duplicates Removed',
+                value: safeStats.duplicates_removed,
+                icon: 'fa-copy',
+                color: 'danger'
+            },
+            {
+                title: 'Null Rows Removed',
+                value: safeStats.nulls_removed,
+                icon: 'fa-trash',
+                color: 'secondary'
+            }
+        ];
+        
+        // Add cards for advanced cleaning stats if they exist
+        if (safeStats.dates_fixed > 0) {
+            statsCards.push({
+                title: 'Dates Fixed',
+                value: safeStats.dates_fixed,
+                icon: 'fa-calendar',
+                color: 'info'
+            });
+        }
+        
+        if (safeStats.numerics_fixed > 0) {
+            statsCards.push({
+                title: 'Numerics Fixed',
+                value: safeStats.numerics_fixed,
+                icon: 'fa-hashtag',
+                color: 'success'
+            });
+        }
+        
+        if (safeStats.phone_numbers_fixed > 0) {
+            statsCards.push({
+                title: 'Phone Numbers Fixed',
+                value: safeStats.phone_numbers_fixed,
+                icon: 'fa-phone',
+                color: 'primary'
+            });
+        }
+        
+        if (safeStats.emails_fixed > 0) {
+            statsCards.push({
+                title: 'Emails Fixed',
+                value: safeStats.emails_fixed,
+                icon: 'fa-envelope',
+                color: 'warning'
+            });
+        }
+        
+        if (safeStats.booleans_fixed > 0) {
+            statsCards.push({
+                title: 'Booleans Fixed',
+                value: safeStats.booleans_fixed,
+                icon: 'fa-check-square',
+                color: 'info'
+            });
+        }
+        
+        if (safeStats.extracted_numeric_values > 0) {
+            statsCards.push({
+                title: 'Numeric Values Extracted',
+                value: safeStats.extracted_numeric_values,
+                icon: 'fa-dollar-sign',
+                color: 'success'
+            });
+        }
+        
+        // Render all cards
+        statsCards.forEach(card => {
+            const cardHTML = `
+                <div class="col">
+                    <div class="card border-${card.color} h-100">
+                        <div class="card-body text-center">
+                            <i class="fas ${card.icon} fa-2x text-${card.color} mb-3"></i>
+                            <h5 class="card-title">${card.title}</h5>
+                            <p class="card-text display-6">${card.value.toLocaleString()}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', cardHTML);
+        });
+        
+        // Create row reduction chart
+        if (safeStats.original_rows > 0) {
+            const ctx1 = document.getElementById('rowReductionChart');
+            if (ctx1) {
+                // Destroy any existing chart
+                if (window.rowReductionChart) {
+                    window.rowReductionChart.destroy();
+                }
+                
+                window.rowReductionChart = new Chart(ctx1, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Original', 'Cleaned'],
+                        datasets: [{
+                            label: 'Row Count',
+                            data: [safeStats.original_rows, safeStats.cleaned_rows],
+                            backgroundColor: [
+                                'rgba(54, 162, 235, 0.5)',
+                                'rgba(75, 192, 192, 0.5)'
+                            ],
+                            borderColor: [
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(75, 192, 192, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return `Row count: ${context.raw.toLocaleString()}`;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // Create operations chart
+            const ctx2 = document.getElementById('cleaningOperationsChart');
+            if (ctx2) {
+                // Destroy any existing chart
+                if (window.cleaningOperationsChart) {
+                    window.cleaningOperationsChart.destroy();
+                }
+                
+                // Get operations with values > 0
+                const operations = [];
+                const values = [];
+                
+                if (safeStats.nulls_removed > 0) {
+                    operations.push('Nulls Removed');
+                    values.push(safeStats.nulls_removed);
+                }
+                
+                if (safeStats.duplicates_removed > 0) {
+                    operations.push('Duplicates Removed');
+                    values.push(safeStats.duplicates_removed);
+                }
+                
+                if (safeStats.missing_values_filled > 0) {
+                    operations.push('Missing Values Filled');
+                    values.push(safeStats.missing_values_filled);
+                }
+                
+                if (safeStats.dates_fixed > 0) {
+                    operations.push('Dates Fixed');
+                    values.push(safeStats.dates_fixed);
+                }
+                
+                if (safeStats.numerics_fixed > 0) {
+                    operations.push('Numerics Fixed');
+                    values.push(safeStats.numerics_fixed);
+                }
+                
+                if (safeStats.phone_numbers_fixed > 0) {
+                    operations.push('Phone Numbers Fixed');
+                    values.push(safeStats.phone_numbers_fixed);
+                }
+                
+                if (safeStats.emails_fixed > 0) {
+                    operations.push('Emails Fixed');
+                    values.push(safeStats.emails_fixed);
+                }
+                
+                if (safeStats.booleans_fixed > 0) {
+                    operations.push('Booleans Fixed');
+                    values.push(safeStats.booleans_fixed);
+                }
+                
+                if (safeStats.extracted_numeric_values > 0) {
+                    operations.push('Numeric Values Extracted');
+                    values.push(safeStats.extracted_numeric_values);
+                }
+                
+                // Create chart if we have operations
+                if (operations.length > 0) {
+                    window.cleaningOperationsChart = new Chart(ctx2, {
+                        type: 'pie',
+                        data: {
+                            labels: operations,
+                            datasets: [{
+                                data: values,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.5)',
+                                    'rgba(54, 162, 235, 0.5)',
+                                    'rgba(255, 206, 86, 0.5)',
+                                    'rgba(75, 192, 192, 0.5)',
+                                    'rgba(153, 102, 255, 0.5)',
+                                    'rgba(255, 159, 64, 0.5)',
+                                    'rgba(199, 199, 199, 0.5)',
+                                    'rgba(83, 102, 255, 0.5)',
+                                    'rgba(40, 159, 64, 0.5)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)',
+                                    'rgba(199, 199, 199, 1)',
+                                    'rgba(83, 102, 255, 1)',
+                                    'rgba(40, 159, 64, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                tooltip: {
+                                    callbacks: {
+                                        label: function(context) {
+                                            const value = context.raw;
+                                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                            const percentage = ((value / total) * 100).toFixed(1);
+                                            return `${context.label}: ${value.toLocaleString()} (${percentage}%)`;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+        }
+    }
+    
+    // Get cleaning options from form inputs
+    function getCleaningOptions() {
+        const options = {
+            removeNulls: true,
+            removeDuplicates: true,
+            standardizeText: true,
+            fillNumerics: true,
+            fixDates: true,
+            trimWhitespace: true,
+            fixPhoneNumbers: true,
+            fixEmails: true,
+            fixBooleanValues: true,
+            extractNumericFromText: true,
+            normalizeText: false
+        };
+        
+        // Try to get current values from form, falling back to defaults if elements don't exist
+        try {
+            const removeNullsElement = document.getElementById('removeNulls');
+            if (removeNullsElement) options.removeNulls = removeNullsElement.checked;
+            
+            const removeDuplicatesElement = document.getElementById('removeDuplicates');
+            if (removeDuplicatesElement) options.removeDuplicates = removeDuplicatesElement.checked;
+            
+            const standardizeTextElement = document.getElementById('standardizeText');
+            if (standardizeTextElement) options.standardizeText = standardizeTextElement.checked;
+            
+            const fillNumericsElement = document.getElementById('fillNumerics');
+            if (fillNumericsElement) options.fillNumerics = fillNumericsElement.checked;
+            
+            const fixDatesElement = document.getElementById('fixDates');
+            if (fixDatesElement) options.fixDates = fixDatesElement.checked;
+            
+            const trimWhitespaceElement = document.getElementById('trimWhitespace');
+            if (trimWhitespaceElement) options.trimWhitespace = trimWhitespaceElement.checked;
+            
+            const fixPhoneNumbersElement = document.getElementById('fixPhoneNumbers');
+            if (fixPhoneNumbersElement) options.fixPhoneNumbers = fixPhoneNumbersElement.checked;
+            
+            const fixEmailsElement = document.getElementById('fixEmails');
+            if (fixEmailsElement) options.fixEmails = fixEmailsElement.checked;
+            
+            const fixBooleanValuesElement = document.getElementById('fixBooleanValues');
+            if (fixBooleanValuesElement) options.fixBooleanValues = fixBooleanValuesElement.checked;
+            
+            const extractNumericFromTextElement = document.getElementById('extractNumericFromText');
+            if (extractNumericFromTextElement) options.extractNumericFromText = extractNumericFromTextElement.checked;
+            
+            const normalizeTextElement = document.getElementById('normalizeText');
+            if (normalizeTextElement) options.normalizeText = normalizeTextElement.checked;
+        } catch (error) {
+            console.warn('Error reading cleaning options from form:', error);
+        }
+        
+        return options;
+    }
+    
+    // Attach event listeners
+    if (uploadForm) {
+        uploadForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Validate form
+            if (!validateForm()) {
+                return;
+            }
+            
+            // Reset UI state
+            if (previewContainer) previewContainer.classList.add('d-none');
+            if (downloadContainer) downloadContainer.classList.add('d-none');
+            if (downloadArea) downloadArea.innerHTML = '';
+            if (downloadInfo) downloadInfo.textContent = '';
+            
+            // Show status and spinner
+            showStatus('Processing files...', 'info');
+            toggleSpinner(true);
+            
+            // Create FormData object
+            const formData = new FormData();
+            
+            // Add all files to the request
+            for (let i = 0; i < fileInput.files.length; i++) {
+                formData.append('files', fileInput.files[i]);
+            }
+            
+            // Add cleaning options to the request
+            const cleaningOptions = getCleaningOptions();
+            for (const [key, value] of Object.entries(cleaningOptions)) {
+                formData.append(key, value);
+            }
+            
+            // Send request to server
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                // Check for HTTP errors
+                if (!response.ok) {
+                    return response.json().then(data => {
+                        throw new Error(data.error || `Upload failed with status: ${response.status}`);
+                    }).catch(e => {
+                        throw new Error(`Upload failed with status ${response.status}`);
+                    });
+                }
+                
+                // Parse JSON from successful response
+                return response.json().catch(e => {
+                    throw new Error('Failed to parse server response as JSON');
+                });
+            })
+            .then(data => {
+                // Hide spinner and show success message
+                toggleSpinner(false);
+                showStatus('Files processed successfully!', 'success');
+                
+                if (!data || typeof data !== 'object') {
+                    throw new Error('Invalid response format from server');
+                }
+                
+                try {
+                    // Safely handle data preview - check if required properties exist
+                    if (data.original_sample && Array.isArray(data.original_sample) && 
+                        data.original_columns && data.original_columns.columns && Array.isArray(data.original_columns.columns)) {
+                        renderTable('original-table', data.original_sample, data.original_columns.columns);
+                    } else {
+                        console.warn('Missing original sample data or columns');
+                    }
+                    
+                    if (data.cleaned_sample && Array.isArray(data.cleaned_sample) &&
+                        data.cleaned_columns && data.cleaned_columns.columns && Array.isArray(data.cleaned_columns.columns)) {
+                        renderTable('cleaned-table', data.cleaned_sample, data.cleaned_columns.columns);
+                    } else {
+                        console.warn('Missing cleaned sample data or columns');
+                    }
+                    
+                    // Render stats if available
+                    if (data.stats && typeof data.stats === 'object') {
+                        renderStats(data.stats);
+                    } else {
+                        console.warn('Missing statistics data');
+                    }
+                    
+                    // Show preview if we have any data to display
+                    if ((data.original_sample && data.original_sample.length > 0) ||
+                        (data.cleaned_sample && data.cleaned_sample.length > 0)) {
+                        if (previewContainer) previewContainer.classList.remove('d-none');
+                    }
+                } catch (error) {
+                    console.error('Error rendering data preview:', error);
+                }
+                
+                // Handle download link if available
+                if (data.download_filename) {
+                    if (downloadContainer) downloadContainer.classList.remove('d-none');
+                    
+                    // Add info about the download
+                    if (downloadInfo) {
+                        downloadInfo.textContent = `Your cleaned data file is ready for download.`;
+                    }
+                    
+                    // Create download button
+                    if (downloadArea) {
+                        const downloadLink = document.createElement('a');
+                        downloadLink.href = `/download/${encodeURIComponent(data.download_filename)}`;
+                        downloadLink.className = 'btn btn-primary';
+                        downloadLink.innerHTML = '<i class="fas fa-download me-2"></i>Download Cleaned Data';
+                        downloadLink.setAttribute('download', '');
+                        
+                        // Clear previous download links
+                        downloadArea.innerHTML = '';
+                        downloadArea.appendChild(downloadLink);
+                    }
+                } else {
+                    console.warn('No download filename provided in response');
+                }
+            })
+            .catch(error => {
+                // Hide spinner and show error message
+                toggleSpinner(false);
+                showStatus(`Error: ${error.message}`, 'error');
+                console.error('Upload error:', error);
+            });
+        });
+    }
+    
+    // Attach event listeners to sample buttons
+    const sampleButtons = document.querySelectorAll('[data-sample]');
+    sampleButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            
+            const sampleName = button.getAttribute('data-sample');
+            if (!sampleName) {
+                showStatus('Sample name not specified', 'error');
+                return;
+            }
+            
+            // Reset UI state
+            if (previewContainer) previewContainer.classList.add('d-none');
+            if (downloadContainer) downloadContainer.classList.add('d-none');
+            if (downloadArea) downloadArea.innerHTML = '';
+            if (downloadInfo) downloadInfo.textContent = '';
+            
+            // Show status and spinner
+            showStatus(`Processing sample file: ${sampleName}...`, 'info');
+            toggleSpinner(true);
+            
+            // Get cleaning options
+            const cleaningOptions = getCleaningOptions();
+            const queryParams = new URLSearchParams();
+            
+            // Add cleaning options as query parameters
+            for (const [key, value] of Object.entries(cleaningOptions)) {
+                queryParams.append(key, value);
+            }
+            
+            // Send request to server
+            fetch(`/use-sample/${encodeURIComponent(sampleName)}?${queryParams}`)
+            .then(response => {
+                // Check for HTTP errors
+                if (!response.ok) {
+                    return response.json().then(data => {
+                        throw new Error(data.error || `Sample processing failed with status: ${response.status}`);
+                    }).catch(e => {
+                        throw new Error(`Sample processing failed with status ${response.status}`);
+                    });
+                }
+                
+                // Parse JSON from successful response
+                return response.json().catch(e => {
+                    throw new Error('Failed to parse sample response as JSON');
+                });
+            })
+            .then(data => {
+                // Hide spinner and show success message
+                toggleSpinner(false);
+                showStatus('Sample file processed successfully!', 'success');
+                
+                if (!data || typeof data !== 'object') {
+                    throw new Error('Invalid response format from server');
+                }
+                
+                try {
+                    // Safely handle data preview - check if required properties exist
+                    if (data.original_sample && Array.isArray(data.original_sample) && 
+                        data.original_columns && data.original_columns.columns && Array.isArray(data.original_columns.columns)) {
+                        renderTable('original-table', data.original_sample, data.original_columns.columns);
+                    } else {
+                        console.warn('Missing original sample data or columns');
+                    }
+                    
+                    if (data.cleaned_sample && Array.isArray(data.cleaned_sample) &&
+                        data.cleaned_columns && data.cleaned_columns.columns && Array.isArray(data.cleaned_columns.columns)) {
+                        renderTable('cleaned-table', data.cleaned_sample, data.cleaned_columns.columns);
+                    } else {
+                        console.warn('Missing cleaned sample data or columns');
+                    }
+                    
+                    // Render stats if available
+                    if (data.stats && typeof data.stats === 'object') {
+                        renderStats(data.stats);
+                    } else {
+                        console.warn('Missing statistics data');
+                    }
+                    
+                    // Show preview if we have any data to display
+                    if ((data.original_sample && data.original_sample.length > 0) ||
+                        (data.cleaned_sample && data.cleaned_sample.length > 0)) {
+                        if (previewContainer) previewContainer.classList.remove('d-none');
+                    }
+                } catch (error) {
+                    console.error('Error rendering data preview:', error);
+                }
+                
+                // Handle download link if available
+                if (data.download_filename) {
+                    if (downloadContainer) downloadContainer.classList.remove('d-none');
+                    
+                    // Add info about the download
+                    if (downloadInfo) {
+                        downloadInfo.textContent = `Your cleaned data file is ready for download.`;
+                    }
+                    
+                    // Create download button
+                    if (downloadArea) {
+                        const downloadLink = document.createElement('a');
+                        downloadLink.href = `/download/${encodeURIComponent(data.download_filename)}`;
+                        downloadLink.className = 'btn btn-primary';
+                        downloadLink.innerHTML = '<i class="fas fa-download me-2"></i>Download Cleaned Data';
+                        downloadLink.setAttribute('download', '');
+                        
+                        // Clear previous download links
+                        downloadArea.innerHTML = '';
+                        downloadArea.appendChild(downloadLink);
+                    }
+                } else {
+                    console.warn('No download filename provided in response');
+                }
+            })
+            .catch(error => {
+                // Hide spinner and show error message
+                toggleSpinner(false);
+                showStatus(`Error: ${error.message}`, 'error');
+                console.error('Sample processing error:', error);
+            });
+        });
+    });
+    
+    // Automatically hide status messages after 10 seconds
+    if (statusDiv) {
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'childList' || mutation.type === 'characterData') {
+                    if (statusDiv.textContent.trim() !== '') {
+                        setTimeout(function() {
+                            statusDiv.textContent = '';
+                            statusContainer.classList.add('d-none');
+                        }, 10000);
+                    }
+                }
+            });
+        });
+        
+        observer.observe(statusDiv, { 
+            characterData: true,
+            childList: true,
+            subtree: true
+        });
+    }
+});

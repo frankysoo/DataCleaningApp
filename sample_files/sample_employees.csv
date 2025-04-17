@@ -1,0 +1,21 @@
+employee_id,first_name,last_name,department,salary,hire_date,performance_rating,email,phone_number,manager
+101,John,Smith,IT,75000,2020-01-15,4.5,john.smith@company.com,555-123-4567,N/A
+102,Jane,Doe,HR,82000,01/30/2020,4.2,jane.doe@company.com,(555) 234-5678,101
+103,Robert,Brown,SALES,65000,2020/02/15,,robert.brown@company.com,555.345.6789,101
+104,Lisa,Wilson,Marketing,90000,03-01-2020,4.8,lisa.wilson@company.com,+1 555 456 7890,102
+105,David,Miller,Finance,78000,2020-03-15,3.9,david.miller@company.com,555-567-8901,102
+106,Sarah,Johnson,it,69000,04/01/2020,4.1,sarah.johnson@company.com,(555) 678-9012,101
+107,Michael,Jones,sales,85000,2020/04/15,,michael.jones@company.com,555.789.0123,101
+108,Emily,Davis,marketing,72000,05-01-2020,4.3,emily.davis@company.com,+1 555 890 1234,105
+109,James,Rodriguez,HR,88000,2020-05-15,4.7,james.rodriguez@company.com,555-901-2345,105
+110,Jessica,Martinez,Finance,79000,06/01/2020,4.0,jessica.martinez@company.com,(555) 012-3456,107
+EMP111,Thomas,Anderson,IT Dept.,75K,"Jan 15, 2020",Excellent,thomas.anderson,,101
+EMP112,Jennifer,Taylor,Human Resources,"$82,000","January 30th, 2020",Good,@company.com,555 234 5678,102
+113-A,Christopher,Lee,Sales Team,65000 USD,Feb 15 2020,Average,christopher.lee@company,+1-555-345-6789,101
+E-114,Amanda,Harris,Marketing Dept,EUR 90000,"March 1st, 2020",Excellent,amanda.harris@company.com,(555)456-7890,107
+115X,Brian,Williams,Finance Dept.,"¥9,800,000",15/03/2020,Satisfactory,brianwilliams@company,555 567 8901,105
+ID116,Mary,Clark,Information Technology,$69K,01.04.20,Good,mary.clark@@company.com,555-678-9012,101
+117,Kevin,Wright,Sales and Marketing,GBP 65000,15 Apr 2020,Average,kevin.wright@company.com,(555)789-0123,107
+118-EMP,Susan,Allen,HR Department,72K USD,"First of May, 2020",Good,susan.allen@companycom,,105
+119,Matthew,King,Marketing Team,"88,000",May 15th,Excellent,matthew.king@company.com,555-901-2345,102
+EMP-120,Elizabeth,Scott,Finance Group,79K per year,"June 1, 20",Good,elizabeth.scott,(555) 012-3456,105

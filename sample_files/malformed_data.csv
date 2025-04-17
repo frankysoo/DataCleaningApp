@@ -1,0 +1,9 @@
+
+product_id,name,price,category
+1,Product A,10.99,Category 1
+2,Product B,20.99,Category 2
+3,"Product C,30.99,Category 3
+4,Product D,40.99,Category 4
+5,Product E,50.99,"Category 5"
+"6","Product F",60.99,Category 6
+7,Product G,"70.99",Category 7

@@ -1,0 +1,151 @@
+OrderID,Date,CustomerID,Category,PaymentMethod,ShippingStatus,Product,Price,Quantity
+1001,2023-02-15,452.0,Sports,Check,Delivered,Tennis Racket,$1369.99,7.0
+1002,08/06/2022,224.0,Books,Bank Transfer,CANCELLED,Fiction,1637.9062031064489,1.0
+1003,10/28/2022,18.0,Clothing,Cash,Returned,Shoes,1676.4461016395735,8.0
+1004,2023-05-15,128.0,Books,,Shipped,Fiction,81.74407208476573,6.0
+1005,11-Sep-2022,,Books,,,Textbook,334.6244076233867,9.0
+1006,2022-09-23,106.0,Electronics,PayPal,Pending,Laptop,398.55 USD,5.0
+1007,22-Jun-2022,254.0,Electronics,PayPal,Delivered,Camera,782.8586782953062,2.0
+1008,23-Sep-2023,22.0,Books,Bank Transfer,Pending,Children's,"€251,53",3.0
+1009,07/22/2023,428.0,Beauty,Credit Card,Delivered,Makeup Kit,1532.9871603998838,7.0
+1010,30-Mar-2022,75.0,Home & Kitchen,Cash,Returned,Vacuum Cleaner,616.3004146869371,2.0
+1011,05/20/2023,363.0,,Bank Transfer,Pending,Dumbbells,$174.10,7.0
+1012,2023-07-22,426.0,Electronics,Cash,Delivered,Tablet,1634.2680787182278,4.0
+1013,2022-08-26,,Electronics,Bank Transfer,,Headphones,1364.5050503224086,2.0
+1014,05/02/2022,382.0,Clothing,Bank Transfer,Pending,Dress,756.7395065975389,10.0
+1015,2023-04-04,382.0,Home & Kitchen,PayPal,Delivered,Microwave,"€1166,57",7.0
+1016,16-Jun-2023,26.0,Sports,Bank Transfer,Delivered,Tennis Racket,302.57 USD,
+1017,2022-10-17,484.0,Electronics,Bank Transfer,CANCELLED,Laptop,57.41968640734194,10.0
+1018,2023-01-26,21.0,Sports,Check,Pending,Running Shoes,377.8238207742136,7.0
+1019,12/09/2022,392.0,Beauty,Cash,Delivered,Perfume,1377.8877246222437,1.0
+1020,2022-10-29,377.0,Clothing,Bank Transfer,Delivered,T-shirt,715.7622589965322,5.0
+1021,09/14/2023,295.0,Books,Cash,Shipped,Non-fiction,$717.97,5.0
+1022,05/12/2022,431.0,Books,,CANCELLED,Non-fiction,"€188,52",7.0
+1023,01/03/2023,55.0,Sports,Credit Card,Returned,Basketball,814.5522924940374,7.0
+1024,11/15/2022,268.0,Books,Cash,Delivered,Textbook,1795.3021009184754,6.0
+1025,20-Jun-2022,460.0,Beauty,Cash,Pending,Moisturizer,761.6661103990593,8.0
+1026,20-May-2023,496.0,Sports,PayPal,Shipped,Tennis Racket,1990.39 USD,3.0
+1027,08/25/2023,217.0,Books,Credit Card,Delivered,Fiction,124.60410458896912,
+1028,18-Apr-2022,198.0,Home & Kitchen,Check,Returned,Toaster,741.8170343505925,10.0
+1029,01/10/2023,174.0,Books,Credit Card,Delivered,Fiction,"€781,20",10.0
+1030,2023-05-16,29.0,Beauty,PayPal,Returned,Hairdryer,102.49353258829366,8.0
+1031,19-Jul-2022,332.0,Beauty,Check,,Hairdryer,$1971.22,5.0
+1032,01-Nov-2023,459.0,Books,Bank Transfer,Shipped,Biography,1571.162878636116,2.0
+1033,09/26/2023,311.0,Electronics,Check,Shipped,,833.9463859018077,10.0
+1034,18-May-2023,265.0,Electronics,Check,Returned,Tablet,1215.2130101374835,6.0
+1035,2022-04-14,428.0,Clothing,Credit Card,Returned,T-shirt,643.3087966146596,3.0
+1036,07-Jan-2023,174.0,Beauty,Bank Transfer,Returned,Shampoo,"€896,96",8.0
+1037,18-Dec-2022,116.0,Home & Kitchen,PayPal,Pending,,1847.9673227498422,8.0
+1038,07-Jun-2022,183.0,Home & Kitchen,Check,CANCELLED,Coffee Maker,348.63828827206913,7.0
+1039,19-Jan-2022,472.0,Home & Kitchen,Bank Transfer,Returned,Blender,1255.2291767833033,1.0
+1040,2023-03-19,27.0,Books,PayPal,Delivered,Biography,625.5928143644663,7.0
+1041,2022-06-02,6.0,Clothing,Cash,,T-shirt,$159.56,2.0
+1042,2022-05-31,333.0,Home & Kitchen,Cash,Shipped,Microwave,1791.0227577837968,5.0
+1043,2022-02-11,117.0,Clothing,PayPal,Returned,Shoes,"€482,79",9.0
+1044,02/09/2022,451.0,Beauty,Bank Transfer,CANCELLED,Perfume,1962.4068557911148,10.0
+1045,2023-02-08,,Electronics,Cash,Pending,Headphones,68.02826368779871,5.0
+1046,2023-03-19,437.0,Beauty,Check,Delivered,,150.34 USD,1.0
+1047,08-Dec-2022,475.0,Sports,PayPal,CANCELLED,Yoga Mat,156.87154223471998,2.0
+1048,02-Dec-2023,474.0,Electronics,Cash,Shipped,Laptop,200.51806737673067,6.0
+1049,2022-06-02,337.0,Beauty,Credit Card,Pending,Makeup Kit,634.7140776087646,10.0
+1050,19-Jul-2022,222.0,Electronics,Bank Transfer,CANCELLED,Headphones,"€1787,75",8.0
+1051,2022-07-15,59.0,Home & Kitchen,Cash,Shipped,Microwave,$1725.43,10.0
+1052,01/08/2023,192.0,Home & Kitchen,Cash,Pending,Toaster,1392.7751178667368,10.0
+1053,15-Apr-2022,32.0,Beauty,Cash,Shipped,Makeup Kit,100.60195860555594,3.0
+1054,07/28/2022,145.0,Sports,PayPal,,Running Shoes,1844.277071451179,4.0
+1055,24-May-2023,293.0,Books,Cash,Pending,Biography,1345.7250680854872,4.0
+1056,2022-01-31,293.0,Clothing,PayPal,Returned,Jeans,1583.41 USD,2.0
+1057,2022-01-26,405.0,Electronics,Bank Transfer,Pending,Camera,"€1303,66",9.0
+1058,02/27/2022,267.0,Clothing,Cash,Pending,Jeans,796.9166447589693,4.0
+1059,31-Jul-2023,341.0,Sports,Credit Card,Pending,Yoga Mat,347.40891751235785,7.0
+1060,06/23/2023,199.0,Beauty,Bank Transfer,Shipped,Hairdryer,221.9451107986037,8.0
+1061,07/25/2023,208.0,Home & Kitchen,Credit Card,CANCELLED,Toaster,$647.58,3.0
+1062,2022-09-01,495.0,Books,PayPal,Returned,Children's,314.0856767403307,4.0
+1063,05/05/2023,156.0,Beauty,Cash,Returned,Moisturizer,1956.3226604161257,8.0
+1064,28-Jan-2022,453.0,Sports,Cash,Pending,Running Shoes,"€1855,64",8.0
+1065,02/10/2023,173.0,Beauty,Check,Delivered,Makeup Kit,1180.8995978027654,1.0
+1066,12/06/2023,93.0,Electronics,Credit Card,Delivered,Tablet,1041.37 USD,6.0
+1067,2023-09-20,139.0,Clothing,Credit Card,Returned,Shoes,1444.4503511450805,1.0
+1068,12/08/2022,184.0,Clothing,PayPal,Shipped,Dress,416.55960989328474,1.0
+1069,2022-03-30,98.0,Clothing,Check,Returned,Dress,1979.1085743573785,3.0
+1070,18-Feb-2022,363.0,Home & Kitchen,PayPal,CANCELLED,Coffee Maker,1275.9663532376792,7.0
+1071,31-Jan-2022,20.0,Sports,Cash,Returned,Tennis Racket,$66.54,3.0
+1072,12/24/2023,,Clothing,Bank Transfer,Returned,Jacket,737.5460912077722,1.0
+1073,10/27/2023,408.0,Home & Kitchen,Bank Transfer,Pending,Toaster,269.5293459955542,2.0
+1074,09/19/2023,167.0,Clothing,Bank Transfer,Returned,T-shirt,11.829530669371637,2.0
+1075,2022-12-20,405.0,Home & Kitchen,,Delivered,Blender,459.9385350328267,4.0
+1076,2023-02-12,500.0,Sports,Credit Card,Pending,Running Shoes,1864.67 USD,5.0
+1077,10/09/2023,131.0,Home & Kitchen,Credit Card,Returned,Blender,159.9881979742034,1.0
+1078,11/08/2022,375.0,Books,Credit Card,,Fiction,"€1854,77",5.0
+1079,09-Mar-2022,365.0,Clothing,Cash,CANCELLED,Dress,874.0585337151639,8.0
+1080,01-Nov-2023,46.0,Clothing,Cash,CANCELLED,Jacket,1621.0690600119212,10.0
+1081,11-Oct-2023,,Home & Kitchen,PayPal,Delivered,Toaster,$1473.53,10.0
+1082,04-May-2023,450.0,Clothing,Credit Card,Delivered,Jacket,174.31740751972887,1.0
+1083,2023-03-26,131.0,Home & Kitchen,,Pending,Coffee Maker,1924.8640353385779,10.0
+1084,28-Oct-2022,63.0,Clothing,PayPal,Pending,Jacket,516.0729754432997,4.0
+1085,2023-03-14,318.0,Clothing,Cash,Shipped,T-shirt,"€636,40",2.0
+1086,30-Mar-2022,380.0,Beauty,Credit Card,Pending,Perfume,1362.11 USD,7.0
+1087,2022-07-04,209.0,Beauty,Cash,Pending,,1561.2737645416244,4.0
+1088,2022-03-21,294.0,Home & Kitchen,Credit Card,CANCELLED,Blender,1308.3660201588798,10.0
+1089,15-Oct-2022,213.0,Sports,Bank Transfer,Shipped,Running Shoes,414.90989823377663,5.0
+1090,08/18/2023,134.0,Electronics,Check,Delivered,Tablet,1473.2553547724037,6.0
+1091,2022-09-10,136.0,Clothing,Credit Card,Shipped,Shoes,$376.40,10.0
+1092,2022-09-24,4.0,Beauty,Credit Card,Returned,Shampoo,"€686,79",3.0
+1093,01/12/2023,99.0,Books,Bank Transfer,Returned,Textbook,1319.7865025509648,8.0
+1094,21-Feb-2023,29.0,Books,Check,CANCELLED,Biography,1273.5189263017544,3.0
+1095,2022-02-09,63.0,Clothing,PayPal,Pending,Dress,1878.2773453975703,3.0
+1096,08-Sep-2023,381.0,Electronics,Cash,Pending,Smartphone,1061.72 USD,10.0
+1097,30-Aug-2022,1.0,Electronics,Credit Card,Shipped,Headphones,1098.0565585940783,7.0
+1098,2023-06-20,459.0,Electronics,Credit Card,Delivered,Smartphone,1913.3192074158615,6.0
+1099,08-Feb-2023,27.0,Clothing,Check,,T-shirt,"€1809,47",5.0
+1100,02/13/2023,20.0,Home & Kitchen,Check,Shipped,Coffee Maker,245.34029685978288,9.0
+1101,2022-04-16,484.0,Clothing,Bank Transfer,Returned,T-shirt,$1323.11,
+1102,2023-11-28,196.0,Home & Kitchen,Check,Delivered,Vacuum Cleaner,526.1850136243021,8.0
+1103,2023-05-10,453.0,Books,PayPal,Delivered,Children's,291.62989095043145,1.0
+1104,2022-04-03,147.0,Beauty,PayPal,Pending,Shampoo,544.8105715053073,2.0
+1105,2022-11-09,227.0,Beauty,Check,Delivered,Shampoo,1797.8679319327075,2.0
+1106,2023-04-19,217.0,Books,Bank Transfer,Returned,Biography,"€21,41",2.0
+1107,2023-03-08,66.0,Electronics,Bank Transfer,Delivered,Camera,113.1899650355225,9.0
+1108,27-Apr-2023,49.0,Sports,Cash,Pending,Tennis Racket,444.8296430178846,10.0
+1109,2022-03-20,188.0,Books,Cash,Shipped,Non-fiction,17.71006524651162,7.0
+1110,2023-12-20,421.0,Beauty,Bank Transfer,Returned,Makeup Kit,1126.9716882633281,5.0
+1111,26-May-2023,24.0,Sports,Check,Pending,Tennis Racket,$1751.64,7.0
+1112,20-Feb-2023,5.0,Electronics,Bank Transfer,Pending,Smartphone,1604.3711518080527,10.0
+1113,2023-01-29,38.0,Books,Credit Card,,Non-fiction,"€1555,72",9.0
+1114,07-Jan-2022,351.0,Clothing,Check,Returned,Jacket,1807.4385708946556,9.0
+1115,06-Oct-2022,349.0,,Bank Transfer,Delivered,Basketball,205.9085554332241,5.0
+1116,08-Apr-2023,340.0,Books,Credit Card,Pending,Textbook,784.10 USD,3.0
+1117,01-May-2023,499.0,Clothing,Credit Card,Shipped,Jeans,663.4864360146903,1.0
+1118,2023-11-28,50.0,Electronics,Check,Returned,Headphones,847.8828959362679,3.0
+1119,05-Feb-2023,64.0,Beauty,Check,Shipped,Perfume,1995.2602222155801,8.0
+1120,08/10/2022,289.0,Sports,Credit Card,Delivered,Tennis Racket,"€1669,90",8.0
+1121,2023-06-20,250.0,Electronics,Bank Transfer,Delivered,Headphones,$857.40,9.0
+1122,2023-03-01,24.0,Books,PayPal,Pending,Fiction,337.46728671694916,4.0
+1123,25-Jan-2022,150.0,Beauty,Cash,Shipped,Makeup Kit,600.5188614711076,10.0
+1124,02-Nov-2023,293.0,Home & Kitchen,Check,Delivered,Toaster,146.30388808773782,7.0
+1125,2022-12-19,416.0,Electronics,Check,CANCELLED,Headphones,1436.6376568870944,1.0
+1126,22-Dec-2022,353.0,Books,Bank Transfer,Delivered,Fiction,1662.67 USD,8.0
+1127,06/27/2023,352.0,Electronics,Cash,Pending,Camera,"€1277,11",8.0
+1128,12/23/2023,410.0,Books,Check,CANCELLED,Biography,1670.8670579624702,1.0
+1129,2022-09-17,156.0,Sports,Bank Transfer,Pending,Tennis Racket,1694.958913446467,3.0
+1130,2023-05-06,171.0,Books,Cash,Pending,Children's,1964.8377127341244,
+1131,2022-11-13,386.0,Books,Credit Card,Shipped,Children's,$988.52,8.0
+1132,01-Apr-2022,128.0,Electronics,Bank Transfer,Returned,Laptop,1536.9967633374781,1.0
+1133,2023-08-14,156.0,Clothing,Check,Pending,Jeans,324.12221641277876,1.0
+1134,06-Sep-2023,98.0,Clothing,Check,,Jeans,"€1162,40",10.0
+1135,17-Jun-2023,155.0,Sports,Cash,Shipped,Running Shoes,1824.970970417849,
+1136,23-Dec-2023,171.0,Books,Credit Card,Pending,Fiction,134.98 USD,6.0
+1137,02/12/2022,107.0,Beauty,,CANCELLED,,1737.4083831728065,4.0
+1138,2022-09-15,486.0,Clothing,Check,CANCELLED,Jacket,738.5692765616187,6.0
+1139,03-Dec-2022,397.0,Beauty,Cash,Pending,,298.4478376502215,8.0
+1140,04/11/2022,358.0,Electronics,Cash,Pending,Camera,1421.0543741477866,7.0
+1141,2022-07-01,,Sports,Check,Pending,Dumbbells,$1180.21,5.0
+1142,03-Jul-2022,456.0,Clothing,Bank Transfer,Pending,Dress,784.1626197636283,8.0
+1143,03-Jul-2022,292.0,Clothing,Cash,Delivered,Jeans,1138.6862393403828,3.0
+1144,2022-02-11,178.0,Home & Kitchen,Check,Pending,Vacuum Cleaner,1552.318864273661,3.0
+1145,2022-06-12,33.0,Sports,Cash,Delivered,Yoga Mat,1216.403351812916,9.0
+1146,2022-12-05,144.0,,Bank Transfer,Returned,Hairdryer,1652.31 USD,9.0
+1147,06/06/2022,33.0,Beauty,Cash,Shipped,,1429.8300005757408,6.0
+1148,2023-03-09,319.0,Beauty,PayPal,CANCELLED,Moisturizer,"€157,86",6.0
+1149,2023-12-15,21.0,Books,PayPal,Delivered,Fiction,1506.5423409902864,4.0
+1150,13-Jul-2022,,Electronics,Bank Transfer,Pending,Tablet,534.9345553257575,8.0

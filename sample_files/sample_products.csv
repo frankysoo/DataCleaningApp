@@ -1,0 +1,22 @@
+product_id,name,category,price,stock,date_added,supplier,color,is_available
+1.0,Laptop,electronics,1200.5,15,2023-05-15,TechCorp,Black,True
+2.0,Smartphone,Electronics,899.99,25,5/20/2023,MobileTech,silver,True
+3.0,Tablet,ELECTRONICS,450,10,2023/05/25,TabletCo,WHITE,True
+4.0,Desktop,Electronics,,5,05-30-2023,PCWorld,black,True
+5.0,Monitor,Electronics,350,,2023-06-01,DisplayTech,,True
+5.0,Monitor,Electronics,350,8,6/1/2023,DisplayTech,SILVER,True
+6.0,Keyboard,Accessories,79.99,30,2023-06-10,InputDevices,black,True
+7.0,Mouse,Accessories,49.99,40,6/15/2023,InputDevices,White,True
+8.0,Speaker,Audio,N/A,12,6-20-2023,SoundSystems,Black,False
+9.0,Headphone,Audio,200,18,2023-06-25,AudioTech,black,True
+10.0,Camera,Photography,650,7,,PhotoCorp,Silver,False
+,Printer,Printing,300,6,2023/07/10,PrinterTech,White,True
+12.0,  USB Drive  ,Storage,20,Check Stock,07-15-2023,StorageCo,Black,True
+13.0,External HDD,Storage,110,15,2023-07-20,StorageCo,Silver,True
+14.0,Webcam,,85,20,07/25/2023,VisualTech,Black,True
+15.0,Gaming Console,Gaming,499.99,-5,"May 15, 2023",GameTech,Black,Yes
+16.0,Smart Watch,Wearables,$299,25 units,June 2023,WearableTech,Silver,YES
+17.0,Bluetooth Earbuds,Audio,129.99 USD,0,2023,AudioTech,White,no
+18.0, Router  ,networking,EUR 89.99,Out of Stock,Last Month,,Black,NO
+19.0,External SSD,STORAGE,"210,50",Unknown,,StorageCo,Silver,1
+20.0,Drone,Gadgets,,TBD,2023-13-45,DroneWorks,Gray,0

@@ -1,0 +1,396 @@
+Okay, here is a detailed plan structured step-by-step, designed to be clear enough for an AI (like GPT-4, Claude, etc.) or a developer to follow for implementation.
+
+Project Goal: Create a web application using Flask and standard web technologies (HTML, CSS, JS) to allow users to upload one or more CSV or Excel files, have the backend merge and clean the data using Pandas, and then allow the user to download the cleaned data as a single Excel file.
+
+Core Technologies:
+
+Backend: Python, Flask, Pandas, Openpyxl
+
+Frontend: HTML, CSS, JavaScript (Vanilla JS with Fetch API)
+
+Detailed Implementation Plan:
+
+Phase 1: Project Setup & Backend Foundation
+
+Create Project Structure:
+
+Create the main directory: data-cleaning-app/
+
+Inside data-cleaning-app/, create:
+
+backend/
+
+uploads/ (Leave empty, maybe add a .gitkeep file)
+
+output/ (Leave empty, maybe add a .gitkeep file)
+
+app.py (Empty file)
+
+data_loader.py (Empty file)
+
+cleaner.py (Empty file)
+
+frontend/
+
+index.html (Empty file)
+
+style.css (Empty file)
+
+app.js (Empty file)
+
+requirements.txt (Empty file)
+
+README.md (Empty file)
+
+Set up Virtual Environment (Recommended):
+
+Navigate to the data-cleaning-app/ directory in your terminal.
+
+Run: python -m venv venv
+
+Activate the environment:
+
+macOS/Linux: source venv/bin/activate
+
+Windows: .\venv\Scripts\activate
+
+Define Dependencies (requirements.txt):
+
+Add the following lines to requirements.txt:
+
+Flask>=2.0
+pandas>=1.3
+openpyxl>=3.0
+# Werkzeug is usually installed with Flask, but good to ensure >=2.0 for secure_filename
+Werkzeug>=2.0
+
+
+Install Dependencies:
+
+Run: pip install -r requirements.txt
+
+Basic Flask App (backend/app.py):
+
+Import necessary libraries: os, Flask, request, send_from_directory, jsonify. Also, import custom modules (will be created next): data_loader, cleaner. Import secure_filename from werkzeug.utils.
+
+Initialize the Flask app: app = Flask(__name__)
+
+Define configuration variables:
+
+UPLOAD_FOLDER = os.path.join('backend', 'uploads')
+
+OUTPUT_FOLDER = os.path.join('backend', 'output')
+
+ALLOWED_EXTENSIONS = {'csv', 'xlsx'}
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+app.config['OUTPUT_FOLDER'] = OUTPUT_FOLDER
+
+Create helper function allowed_file(filename): Checks if filename has an extension in ALLOWED_EXTENSIONS.
+
+Create upload and output directories if they don't exist: os.makedirs(UPLOAD_FOLDER, exist_ok=True), os.makedirs(OUTPUT_FOLDER, exist_ok=True).
+
+Create a basic root route / (optional, for testing): Returns a simple message like "Backend is running".
+
+Add the main execution block: if __name__ == '__main__': app.run(debug=True, port=5000)
+
+Phase 2: Backend - Data Loading & Cleaning Logic
+
+Implement Data Loader (backend/data_loader.py):
+
+Import pandas as pd and os.
+
+Define function load_and_merge_data(file_paths):
+
+Takes a list of file paths (file_paths) located in the uploads folder.
+
+Initialize an empty list dataframes = [].
+
+Loop through each filepath in file_paths:
+
+Get the file extension (os.path.splitext(filepath)[1].lower()).
+
+Use a try-except block for robustness.
+
+If extension is .csv: df = pd.read_csv(filepath)
+
+If extension is .xlsx: df = pd.read_excel(filepath)
+
+If valid DataFrame loaded, append df to dataframes.
+
+Handle potential Exception during file reading (log error, skip file, or return None).
+
+If dataframes list is not empty:
+
+Concatenate all dataframes: merged_df = pd.concat(dataframes, ignore_index=True)
+
+Return merged_df.
+
+Else (no valid data loaded):
+
+Return None.
+
+Implement Data Cleaner (backend/cleaner.py):
+
+Import pandas as pd.
+
+Define function clean_data(df):
+
+Takes a Pandas DataFrame df as input.
+
+Implement specific cleaning logic here. This is crucial and depends on the expected data structure. Provide example cleaning steps:
+
+Handle Missing Values:
+
+df.dropna(how='all', inplace=True) # Drop rows where ALL columns are NaN
+
+df.fillna({'numeric_column_example': 0, 'text_column_example': 'Unknown'}, inplace=True) # Fill specific columns (replace with actual column names if known, or make more generic)
+
+Remove Duplicates:
+
+df.drop_duplicates(inplace=True)
+
+Correct Data Types (Example):
+
+For columns expected to be numeric: df['numeric_col'] = pd.to_numeric(df['numeric_col'], errors='coerce') (coerce turns errors into NaN)
+
+For columns expected to be dates: df['date_col'] = pd.to_datetime(df['date_col'], errors='coerce')
+
+Standardize Text (Example):
+
+For a categorical column: df['category_col'] = df['category_col'].str.lower().str.strip()
+
+Remove unnecessary columns (Example):
+
+df.drop(columns=['unwanted_col_1', 'unwanted_col_2'], inplace=True, errors='ignore')
+
+Important: Add comments explaining that these cleaning steps are examples and should be customized based on the actual data requirements.
+
+Return the cleaned df.
+
+Phase 3: Backend - API Endpoints
+
+Implement Upload Endpoint (backend/app.py):
+
+Define route @app.route('/upload', methods=['POST']).
+
+Inside the route function:
+
+Check if 'files' (matching the frontend input name) is in request.files. If not, return jsonify({'error': 'No file part'}), 400.
+
+Get the list of files: files = request.files.getlist('files').
+
+Initialize saved_files_paths = [].
+
+Check if files list is empty or contains only files with empty filenames. If so, return jsonify({'error': 'No selected file'}), 400.
+
+Iterate through the files:
+
+For each file:
+
+If file and allowed_file(file.filename):
+
+Sanitize filename: filename = secure_filename(file.filename)
+
+Create full save path: filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+
+Save the file: file.save(filepath)
+
+Append filepath to saved_files_paths.
+
+Else (if file not allowed):
+
+Log or note the invalid file type (optional).
+
+If saved_files_paths is empty (no valid files were saved), return jsonify({'error': 'No valid files uploaded'}), 400.
+
+Call Data Loader: merged_df = data_loader.load_and_merge_data(saved_files_paths)
+
+Handle merged_df being None (loading failed): Return jsonify({'error': 'Failed to load or merge files'}), 500.
+
+Call Data Cleaner: cleaned_df = cleaner.clean_data(merged_df)
+
+Handle potential errors during cleaning (if clean_data might fail).
+
+Save Cleaned Data:
+
+Define output filename: output_filename = "cleaned_data.xlsx"
+
+Define full output path: output_path = os.path.join(app.config['OUTPUT_FOLDER'], output_filename)
+
+Use a try-except block for saving.
+
+Save to Excel: cleaned_df.to_excel(output_path, index=False, engine='openpyxl')
+
+If saving successful: Return jsonify({'message': 'Files processed successfully', 'download_filename': output_filename}), 200.
+
+If saving failed: Return jsonify({'error': 'Failed to save cleaned file'}), 500.
+
+Cleanup (Optional but Recommended): Delete the uploaded files from uploads/ after successful processing. Loop through saved_files_paths and use os.remove(path).
+
+Implement Download Endpoint (backend/app.py):
+
+Define route @app.route('/download/<filename>', methods=['GET']).
+
+Inside the route function:
+
+Use send_from_directory: return send_from_directory(app.config['OUTPUT_FOLDER'], filename, as_attachment=True)
+
+Add error handling (e.g., try-except FileNotFoundError) in case the file doesn't exist.
+
+Phase 4: Frontend Development
+
+Create HTML Structure (frontend/index.html):
+
+Basic HTML5 boilerplate (<!DOCTYPE html>, <html>, <head>, <body>).
+
+Link style.css in <head>: <link rel="stylesheet" href="style.css">
+
+Link app.js at the end of <body>: <script src="app.js" defer></script>
+
+Add a title: <title>Data Cleaning App</title>
+
+In <body>:
+
+<h1>Upload Files for Cleaning</h1>
+
+<form id="upload-form">
+
+<label for="fileInput">Choose CSV or Excel files:</label>
+
+<input type="file" id="fileInput" name="files" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" multiple> (Add multiple attribute)
+
+<button type="submit">Upload and Clean</button>
+
+</form>
+
+<div id="status"></div> (To show messages like "Uploading...", "Processing...", "Success!", or errors)
+
+<div id="download-area"></div> (To display the download link)
+
+Basic CSS Styling (frontend/style.css):
+
+Add simple styles for better usability:
+
+Style body (e.g., font-family, max-width, margin: auto, padding).
+
+Style form elements (e.g., margin-bottom).
+
+Style the button (e.g., padding, cursor: pointer).
+
+Style #status (e.g., margin-top, font-weight) and add classes for success/error messages (e.g., .success { color: green; }, .error { color: red; }).
+
+Style #download-area (e.g., margin-top).
+
+Implement JavaScript Logic (frontend/app.js):
+
+Get references to DOM elements: uploadForm, fileInput, statusDiv, downloadArea.
+
+Add event listener to uploadForm for the submit event.
+
+Inside the event handler function:
+
+event.preventDefault();
+
+Get files: const files = fileInput.files;
+
+Check if files.length === 0. If so, show an error in statusDiv ("Please select at least one file.") and return.
+
+Create FormData: const formData = new FormData();
+
+Loop through files and append each to formData: formData.append('files', file); (The key 'files' must match request.files.getlist('files') in Flask).
+
+Clear previous status and download link: statusDiv.textContent = 'Uploading and processing...'; statusDiv.className = ''; downloadArea.innerHTML = '';
+
+Use fetch('/upload', { method: 'POST', body: formData }):
+
+Use .then(response => { ... }) to handle the response.
+
+Check response.ok. If not ok, throw an error or parse the error JSON from the backend.
+
+If ok, parse JSON: return response.json();
+
+Use another .then(data => { ... }) for the parsed JSON data:
+
+Check data.message for success.
+
+Update statusDiv: statusDiv.textContent = data.message; statusDiv.className = 'success';
+
+Create download link:
+
+const link = document.createElement('a');
+
+link.href = \/download/${data.download_filename}`;`
+
+link.textContent = \Download ${data.download_filename}`;`
+
+link.setAttribute('download', data.download_filename); // Optional: Suggests filename to browser
+
+Append link to downloadArea: downloadArea.appendChild(link);
+
+Use .catch(error => { ... }):
+
+Handle network errors or errors thrown from the response check.
+
+Try to parse error JSON from response if available (e.g., error.json().then(...) inside the catch if the response object is accessible).
+
+Display error message in statusDiv: statusDiv.textContent = 'Error: ' + (error.message || 'Upload failed.'); statusDiv.className = 'error';
+
+Log the full error to the console: console.error('Upload error:', error);
+
+Phase 5: Testing & Refinement
+
+Run the Application:
+
+Open a terminal, navigate to data-cleaning-app/, activate the virtual environment (source venv/bin/activate or .\venv\Scripts\activate).
+
+Run the backend: python backend/app.py
+
+Open frontend/index.html in a web browser (usually by double-clicking the file or using a simple HTTP server like Python's http.server module if needed, though direct file access might work for this simple case).
+
+Test Thoroughly:
+
+Upload single CSV, single XLSX.
+
+Upload multiple CSVs, multiple XLSXs, mixed types.
+
+Upload files with expected data structures.
+
+Upload files with unexpected data/errors (e.g., missing columns, wrong data types).
+
+Upload files with non-allowed extensions.
+
+Upload no files.
+
+Test the download link.
+
+Check browser developer console (F12) for JS errors and network requests/responses.
+
+Check the backend terminal for Flask logs and potential Python errors.
+
+Refine:
+
+Improve error messages (both backend responses and frontend display).
+
+Adjust cleaning logic in cleaner.py based on test results.
+
+Enhance CSS for better UI/UX.
+
+Phase 6: Documentation & Bonus Features (Optional)
+
+Write README.md:
+
+Include project description, setup instructions (virtual env, install requirements), how to run (backend server, open frontend), and basic usage.
+
+Implement Bonus Features (If desired):
+
+Aperçu: Requires more complex JS (using FileReader API to read file content locally) or a dedicated backend endpoint to load and return the first few rows before full processing.
+
+Logs/Error Messages: Implement Python's logging module in app.py, data_loader.py, cleaner.py. Log key events (file received, loading start/end, cleaning start/end, saving, errors). Return more structured error JSON from Flask.
+
+Nettoyage Intelligent: Modify cleaner.py to accept parameters (e.g., from the frontend or a config file) specifying cleaning rules per column. This is a significant enhancement.
+
+Plusieurs fichiers à la fois: This is already covered by the base plan (multiple attribute in HTML, request.files.getlist in Flask, pd.concat in data loader). Ensure pd.concat handles potentially different column sets gracefully (it usually does by creating NaNs).
+
+This detailed plan breaks down the project into manageable steps, specifies the code structure and logic for each component, and outlines the interaction between frontend and backend. An AI should be able to use this plan to generate the corresponding code for each file. Remember to emphasize the need to customize the cleaner.py logic based on the specific data cleaning requirements.
