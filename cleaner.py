@@ -10,16 +10,8 @@ import unicodedata
 logger = logging.getLogger(__name__)
 
 def extract_numeric_value(value):
-    """
-    Extract numeric value from strings containing currency symbols, commas, etc.
-    E.g. "$1,234.56" -> 1234.56, "€50,00" -> 50.00
-
-    Args:
-        value: The value to extract numeric part from
-
-    Returns:
-        Extracted float value or None if extraction fails
-    """
+    """Extract numeric value from strings containing currency symbols, commas, etc.
+    E.g. "$1,234.56" -> 1234.56, "€50,00" -> 50.00"""
     if pd.isna(value):
         return None
 
@@ -51,15 +43,7 @@ def extract_numeric_value(value):
         return None
 
 def standardize_phone_number(phone):
-    """
-    Standardize phone number formats
-
-    Args:
-        phone: Phone number string
-
-    Returns:
-        Standardized phone number or original if it cannot be standardized
-    """
+    """Standardize phone number formats"""
     if pd.isna(phone) or not isinstance(phone, str):
         return phone
 
@@ -80,15 +64,7 @@ def standardize_phone_number(phone):
         return '-'.join([digits[i:i+3] for i in range(0, len(digits), 3)])
 
 def standardize_email(email):
-    """
-    Basic email format standardization and validation
-
-    Args:
-        email: Email string
-
-    Returns:
-        Standardized email or original if it cannot be standardized
-    """
+    """Basic email format standardization and validation"""
     if pd.isna(email) or not isinstance(email, str):
         return email
 
@@ -125,15 +101,7 @@ def standardize_email(email):
     return email
 
 def normalize_text(text):
-    """
-    Normalize text by removing accents, standardizing case, etc.
-
-    Args:
-        text: Text string to normalize
-
-    Returns:
-        Normalized text
-    """
+    """Normalize text by removing accents, standardizing case, etc."""
     if pd.isna(text) or not isinstance(text, str):
         return text
 
@@ -153,15 +121,7 @@ def normalize_text(text):
     return text
 
 def detect_boolean_values(value):
-    """
-    Detect and standardize boolean values
-
-    Args:
-        value: The value to check for boolean representation
-
-    Returns:
-        True, False, or the original value
-    """
+    """Detect and standardize boolean values"""
     if pd.isna(value):
         return value
 
@@ -187,15 +147,7 @@ def detect_boolean_values(value):
     return value
 
 def detect_and_parse_date(date_str):
-    """
-    Advanced date format detection and parsing
-
-    Args:
-        date_str: Date string to parse
-
-    Returns:
-        Pandas Timestamp or None if parsing fails
-    """
+    """Advanced date format detection and parsing"""
     if pd.isna(date_str):
         return None
 
@@ -242,27 +194,8 @@ def detect_and_parse_date(date_str):
             return None
 
 def clean_data(df, options=None):
-    """
-    Clean the input DataFrame by applying various cleaning operations
+    """Clean the input DataFrame by applying various cleaning operations"""
 
-    Args:
-        df: Pandas DataFrame to clean
-        options: Dictionary of cleaning options:
-            - remove_nulls: Drop rows where all values are NaN (Default: True)
-            - remove_duplicates: Remove duplicate rows (Default: True)
-            - standardize_text: Standardize categorical text columns (Default: True)
-            - fill_numerics: Fill numeric nulls with 0 (Default: True)
-            - fix_dates: Try to fix date formats (Default: True)
-            - trim_whitespace: Trim whitespace from text fields (Default: True)
-            - fix_phone_numbers: Standardize phone number formats (Default: True)
-            - fix_emails: Standardize and validate email addresses (Default: True)
-            - fix_boolean_values: Standardize boolean values (Default: True)
-            - extract_numeric_from_text: Extract numeric values from text (Default: True)
-            - normalize_text: Normalize text by removing accents, etc. (Default: False)
-
-    Returns:
-        Cleaned pandas DataFrame and stats dictionary
-    """
     # Validate input DataFrame
     if df is None:
         logger.error("Input DataFrame is None")
@@ -762,496 +695,4 @@ def clean_data(df, options=None):
     logger.info(f"Cleaning statistics: {stats}")
     return cleaned_df, stats
 
-# Improved cleaning algorithm: 2025-04-17 20:28:33
 
-# Improved cleaning algorithm: 2025-04-17 20:28:35
-
-# Improved cleaning algorithm: 2025-04-17 20:28:35
-
-# Improved cleaning algorithm: 2025-04-17 20:28:37
-
-# Improved cleaning algorithm: 2025-04-17 20:28:37
-
-# Improved cleaning algorithm: 2025-04-17 20:28:38
-
-# Improved cleaning algorithm: 2025-04-17 20:28:38
-
-# Improved cleaning algorithm: 2025-04-17 20:28:39
-
-# Improved cleaning algorithm: 2025-04-17 20:28:40
-
-# Improved cleaning algorithm: 2025-04-17 20:28:41
-
-# Improved cleaning algorithm: 2025-04-17 20:28:41
-
-# Improved cleaning algorithm: 2025-04-17 20:28:45
-
-# Improved cleaning algorithm: 2025-04-17 20:28:46
-
-# Improved cleaning algorithm: 2025-04-17 20:28:48
-
-# Improved cleaning algorithm: 2025-04-17 20:28:56
-
-# Improved cleaning algorithm: 2025-04-17 20:28:57
-
-# Improved cleaning algorithm: 2025-04-17 20:28:58
-
-# Improved cleaning algorithm: 2025-04-17 20:28:58
-
-# Improved cleaning algorithm: 2025-04-17 20:28:58
-
-# Improved cleaning algorithm: 2025-04-17 20:29:00
-
-# Improved cleaning algorithm: 2025-04-17 20:29:00
-
-# Improved cleaning algorithm: 2025-04-17 20:29:01
-
-# Improved cleaning algorithm: 2025-04-17 20:29:02
-
-# Improved cleaning algorithm: 2025-04-17 20:29:04
-
-# Improved cleaning algorithm: 2025-04-17 20:29:04
-
-# Improved cleaning algorithm: 2025-04-17 20:29:06
-
-# Improved cleaning algorithm: 2025-04-17 20:29:08
-
-# Improved cleaning algorithm: 2025-04-17 20:29:08
-
-# Improved cleaning algorithm: 2025-04-17 20:29:09
-
-# Improved cleaning algorithm: 2025-04-17 20:29:10
-
-# Improved cleaning algorithm: 2025-04-17 20:29:11
-
-# Improved cleaning algorithm: 2025-04-17 20:29:12
-
-# Improved cleaning algorithm: 2025-04-17 20:29:14
-
-# Improved cleaning algorithm: 2025-04-17 20:29:15
-
-# Improved cleaning algorithm: 2025-04-17 20:29:18
-
-# Improved cleaning algorithm: 2025-04-17 20:29:18
-
-# Improved cleaning algorithm: 2025-04-17 20:29:19
-
-# Improved cleaning algorithm: 2025-04-17 20:29:20
-
-# Improved cleaning algorithm: 2025-04-17 20:29:21
-
-# Improved cleaning algorithm: 2025-04-17 20:29:22
-
-# Improved cleaning algorithm: 2025-04-17 20:29:23
-
-# Improved cleaning algorithm: 2025-04-17 20:29:24
-
-# Improved cleaning algorithm: 2025-04-17 20:29:27
-
-# Improved cleaning algorithm: 2025-04-17 20:29:29
-
-# Improved cleaning algorithm: 2025-04-17 20:29:30
-
-# Improved cleaning algorithm: 2025-04-17 20:29:46
-
-# Improved cleaning algorithm: 2025-04-17 20:29:46
-
-# Improved cleaning algorithm: 2025-04-17 20:29:47
-
-# Improved cleaning algorithm: 2025-04-17 20:29:47
-
-# Improved cleaning algorithm: 2025-04-17 20:29:48
-
-# Improved cleaning algorithm: 2025-04-17 20:30:16
-
-# Improved cleaning algorithm: 2025-04-17 20:30:17
-
-# Improved cleaning algorithm: 2025-04-17 20:30:17
-
-# Improved cleaning algorithm: 2025-04-17 20:30:18
-
-# Improved cleaning algorithm: 2025-04-17 20:30:21
-
-# Improved cleaning algorithm: 2025-04-17 20:30:22
-
-# Improved cleaning algorithm: 2025-04-17 20:30:23
-
-# Improved cleaning algorithm: 2025-04-17 20:30:24
-
-# Improved cleaning algorithm: 2025-04-17 20:30:26
-
-# Improved cleaning algorithm: 2025-04-17 20:30:26
-
-# Improved cleaning algorithm: 2025-04-17 20:30:27
-
-# Improved cleaning algorithm: 2025-04-17 20:30:32
-
-# Improved cleaning algorithm: 2025-04-17 20:30:32
-
-# Improved cleaning algorithm: 2025-04-17 20:30:32
-
-# Improved cleaning algorithm: 2025-04-17 20:30:33
-
-# Improved cleaning algorithm: 2025-04-17 20:30:34
-
-# Improved cleaning algorithm: 2025-04-17 20:30:35
-
-# Improved cleaning algorithm: 2025-04-17 20:30:37
-
-# Improved cleaning algorithm: 2025-04-17 20:30:39
-
-# Improved cleaning algorithm: 2025-04-17 20:30:40
-
-# Improved cleaning algorithm: 2025-04-17 20:30:40
-
-# Improved cleaning algorithm: 2025-04-17 20:30:41
-
-# Improved cleaning algorithm: 2025-04-17 20:30:41
-
-# Improved cleaning algorithm: 2025-04-17 20:30:41
-
-# Improved cleaning algorithm: 2025-04-17 20:30:42
-
-# Improved cleaning algorithm: 2025-04-17 20:30:44
-
-# Improved cleaning algorithm: 2025-04-17 20:30:45
-
-# Improved cleaning algorithm: 2025-04-17 20:30:48
-
-# Improved cleaning algorithm: 2025-04-17 20:30:51
-
-# Improved cleaning algorithm: 2025-04-17 20:30:51
-
-# Improved cleaning algorithm: 2025-04-17 20:30:52
-
-# Improved cleaning algorithm: 2025-04-17 20:30:57
-
-# Improved cleaning algorithm: 2025-04-17 20:30:59
-
-# Improved cleaning algorithm: 2025-04-17 20:31:00
-
-# Improved cleaning algorithm: 2025-04-17 20:31:03
-
-# Improved cleaning algorithm: 2025-04-17 20:31:05
-
-# Improved cleaning algorithm: 2025-04-17 20:31:05
-
-# Improved cleaning algorithm: 2025-04-17 20:31:08
-
-# Improved cleaning algorithm: 2025-04-17 20:31:08
-
-# Improved cleaning algorithm: 2025-04-17 20:31:09
-
-# Improved cleaning algorithm: 2025-04-17 20:31:09
-
-# Improved cleaning algorithm: 2025-04-17 20:31:11
-
-# Improved cleaning algorithm: 2025-04-17 20:31:12
-
-# Improved cleaning algorithm: 2025-04-17 20:31:14
-
-# Improved cleaning algorithm: 2025-04-17 20:31:16
-
-# Improved cleaning algorithm: 2025-04-17 20:31:17
-
-# Improved cleaning algorithm: 2025-04-17 20:31:18
-
-# Improved cleaning algorithm: 2025-04-17 20:31:19
-
-# Improved cleaning algorithm: 2025-04-17 20:31:20
-
-# Improved cleaning algorithm: 2025-04-17 20:31:25
-
-# Improved cleaning algorithm: 2025-04-17 20:31:26
-
-# Improved cleaning algorithm: 2025-04-17 20:31:28
-
-# Improved cleaning algorithm: 2025-04-17 20:31:28
-
-# Improved cleaning algorithm: 2025-04-17 20:31:30
-
-# Improved cleaning algorithm: 2025-04-17 20:31:34
-
-# Improved cleaning algorithm: 2025-04-17 20:31:36
-
-# Improved cleaning algorithm: 2025-04-17 20:31:37
-
-# Improved cleaning algorithm: 2025-04-17 20:31:38
-
-# Improved cleaning algorithm: 2025-04-17 20:31:39
-
-# Improved cleaning algorithm: 2025-04-17 20:31:39
-
-# Improved cleaning algorithm: 2025-04-17 20:31:39
-
-# Improved cleaning algorithm: 2025-04-17 20:31:40
-
-# Improved cleaning algorithm: 2025-04-17 20:31:42
-
-# Improved cleaning algorithm: 2025-04-17 20:31:49
-
-# Improved cleaning algorithm: 2025-04-17 20:31:52
-
-# Improved cleaning algorithm: 2025-04-17 20:31:53
-
-# Improved cleaning algorithm: 2025-04-17 20:31:59
-
-# Improved cleaning algorithm: 2025-04-17 20:31:59
-
-# Improved cleaning algorithm: 2025-04-17 20:31:59
-
-# Improved cleaning algorithm: 2025-04-17 20:32:02
-
-# Improved cleaning algorithm: 2025-04-17 20:32:04
-
-# Improved cleaning algorithm: 2025-04-17 20:32:05
-
-# Improved cleaning algorithm: 2025-04-17 20:32:07
-
-# Improved cleaning algorithm: 2025-04-17 20:32:10
-
-# Improved cleaning algorithm: 2025-04-17 20:32:13
-
-# Improved cleaning algorithm: 2025-04-17 20:32:18
-
-# Improved cleaning algorithm: 2025-04-17 20:32:19
-
-# Improved cleaning algorithm: 2025-04-17 20:32:22
-
-# Improved cleaning algorithm: 2025-04-17 20:32:23
-
-# Improved cleaning algorithm: 2025-04-17 20:32:33
-
-# Improved cleaning algorithm: 2025-04-17 20:32:33
-
-# Improved cleaning algorithm: 2025-04-17 20:32:34
-
-# Improved cleaning algorithm: 2025-04-17 20:57:07
-
-# Improved cleaning algorithm: 2025-04-17 20:57:08
-
-# Improved cleaning algorithm: 2025-04-17 20:57:11
-
-# Improved cleaning algorithm: 2025-04-17 20:57:13
-
-# Improved cleaning algorithm: 2025-04-17 20:57:13
-
-# Improved cleaning algorithm: 2025-04-17 20:57:13
-
-# Improved cleaning algorithm: 2025-04-17 20:57:14
-
-# Improved cleaning algorithm: 2025-04-17 20:57:14
-
-# Improved cleaning algorithm: 2025-04-17 20:57:15
-
-# Improved cleaning algorithm: 2025-04-17 20:57:15
-
-# Improved cleaning algorithm: 2025-04-17 20:57:18
-
-# Improved cleaning algorithm: 2025-04-17 20:57:18
-
-# Improved cleaning algorithm: 2025-04-17 20:57:19
-
-# Improved cleaning algorithm: 2025-04-17 20:57:20
-
-# Improved cleaning algorithm: 2025-04-17 20:57:21
-
-# Improved cleaning algorithm: 2025-04-17 20:57:21
-
-# Improved cleaning algorithm: 2025-04-17 20:57:22
-
-# Improved cleaning algorithm: 2025-04-17 20:57:23
-
-# Improved cleaning algorithm: 2025-04-17 20:57:23
-
-# Improved cleaning algorithm: 2025-04-17 20:57:25
-
-# Improved cleaning algorithm: 2025-04-17 20:57:25
-
-# Improved cleaning algorithm: 2025-04-17 20:57:29
-
-# Improved cleaning algorithm: 2025-04-17 20:57:31
-
-# Improved cleaning algorithm: 2025-04-17 20:57:32
-
-# Improved cleaning algorithm: 2025-04-17 20:57:33
-
-# Improved cleaning algorithm: 2025-04-17 20:57:35
-
-# Improved cleaning algorithm: 2025-04-17 20:57:37
-
-# Improved cleaning algorithm: 2025-04-17 20:57:38
-
-# Improved cleaning algorithm: 2025-04-17 20:57:39
-
-# Improved cleaning algorithm: 2025-04-17 20:57:40
-
-# Improved cleaning algorithm: 2025-04-17 20:57:42
-
-# Improved cleaning algorithm: 2025-04-17 20:57:43
-
-# Improved cleaning algorithm: 2025-04-17 20:57:43
-
-# Improved cleaning algorithm: 2025-04-17 20:57:44
-
-# Improved cleaning algorithm: 2025-04-17 20:57:45
-
-# Improved cleaning algorithm: 2025-04-17 20:57:46
-
-# Improved cleaning algorithm: 2025-04-17 20:57:46
-
-# Improved cleaning algorithm: 2025-04-17 20:57:48
-
-# Improved cleaning algorithm: 2025-04-17 20:57:49
-
-# Improved cleaning algorithm: 2025-04-17 20:57:50
-
-# Improved cleaning algorithm: 2025-04-17 20:57:51
-
-# Improved cleaning algorithm: 2025-04-17 20:57:52
-
-# Improved cleaning algorithm: 2025-04-17 20:57:52
-
-# Improved cleaning algorithm: 2025-04-17 20:57:54
-
-# Improved cleaning algorithm: 2025-04-17 20:57:56
-
-# Improved cleaning algorithm: 2025-04-17 20:57:57
-
-# Improved cleaning algorithm: 2025-04-17 20:57:59
-
-# Improved cleaning algorithm: 2025-04-17 20:58:01
-
-# Improved cleaning algorithm: 2025-04-17 20:58:03
-
-# Improved cleaning algorithm: 2025-04-17 20:58:05
-
-# Improved cleaning algorithm: 2025-04-17 20:58:11
-
-# Improved cleaning algorithm: 2025-04-17 20:58:11
-
-# Improved cleaning algorithm: 2025-04-17 20:58:12
-
-# Improved cleaning algorithm: 2025-04-17 20:58:15
-
-# Improved cleaning algorithm: 2025-04-17 20:58:17
-
-# Improved cleaning algorithm: 2025-04-17 20:58:22
-
-# Improved cleaning algorithm: 2025-04-17 20:58:23
-
-# Improved cleaning algorithm: 2025-04-17 20:58:23
-
-# Improved cleaning algorithm: 2025-04-17 20:58:24
-
-# Improved cleaning algorithm: 2025-04-17 20:58:28
-
-# Improved cleaning algorithm: 2025-04-17 20:58:30
-
-# Improved cleaning algorithm: 2025-04-17 20:58:33
-
-# Improved cleaning algorithm: 2025-04-17 20:58:33
-
-# Improved cleaning algorithm: 2025-04-17 20:58:36
-
-# Improved cleaning algorithm: 2025-04-17 20:58:37
-
-# Improved cleaning algorithm: 2025-04-17 20:58:37
-
-# Improved cleaning algorithm: 2025-04-17 20:58:44
-
-# Improved cleaning algorithm: 2025-04-17 20:58:45
-
-# Improved cleaning algorithm: 2025-04-17 20:58:47
-
-# Improved cleaning algorithm: 2025-04-17 20:58:51
-
-# Improved cleaning algorithm: 2025-04-17 20:58:51
-
-# Improved cleaning algorithm: 2025-04-17 20:58:53
-
-# Improved cleaning algorithm: 2025-04-17 20:58:53
-
-# Improved cleaning algorithm: 2025-04-17 20:58:54
-
-# Improved cleaning algorithm: 2025-04-17 20:58:54
-
-# Improved cleaning algorithm: 2025-04-17 20:58:56
-
-# Improved cleaning algorithm: 2025-04-17 20:58:57
-
-# Improved cleaning algorithm: 2025-04-17 20:58:58
-
-# Improved cleaning algorithm: 2025-04-17 20:59:01
-
-# Improved cleaning algorithm: 2025-04-17 20:59:01
-
-# Improved cleaning algorithm: 2025-04-17 20:59:02
-
-# Improved cleaning algorithm: 2025-04-17 20:59:02
-
-# Improved cleaning algorithm: 2025-04-17 20:59:04
-
-# Improved cleaning algorithm: 2025-04-17 20:59:06
-
-# Improved cleaning algorithm: 2025-04-17 20:59:07
-
-# Improved cleaning algorithm: 2025-04-17 20:59:10
-
-# Improved cleaning algorithm: 2025-04-17 20:59:11
-
-# Improved cleaning algorithm: 2025-04-17 20:59:15
-
-# Improved cleaning algorithm: 2025-04-17 20:59:17
-
-# Improved cleaning algorithm: 2025-04-17 20:59:19
-
-# Improved cleaning algorithm: 2025-04-17 20:59:20
-
-# Improved cleaning algorithm: 2025-04-17 20:59:21
-
-# Improved cleaning algorithm: 2025-04-17 20:59:21
-
-# Improved cleaning algorithm: 2025-04-17 20:59:23
-
-# Improved cleaning algorithm: 2025-04-17 20:59:23
-
-# Improved cleaning algorithm: 2025-04-17 20:59:24
-
-# Improved cleaning algorithm: 2025-04-17 20:59:27
-
-# Improved cleaning algorithm: 2025-04-17 20:59:27
-
-# Improved cleaning algorithm: 2025-04-17 20:59:27
-
-# Improved cleaning algorithm: 2025-04-17 20:59:28
-
-# Improved cleaning algorithm: 2025-04-17 20:59:31
-
-# Improved cleaning algorithm: 2025-04-17 21:29:42
-
-# Improved cleaning algorithm: 2025-04-17 21:29:45
-
-# Improved cleaning algorithm: 2025-04-17 21:29:46
-
-# Improved cleaning algorithm: 2025-04-17 21:29:48
-
-# Improved cleaning algorithm: 2025-04-17 21:29:48
-
-# Improved cleaning algorithm: 2025-04-17 21:29:49
-
-# Improved cleaning algorithm: 2025-04-17 21:29:50
-
-# Improved cleaning algorithm: 2025-04-17 21:29:50
-
-# Improved cleaning algorithm: 2025-04-17 21:29:50
-
-# Improved cleaning algorithm: 2025-04-17 21:29:51
-
-# Improved cleaning algorithm: 2025-04-17 21:29:55
-
-# Improved cleaning algorithm: 2025-04-17 21:29:56
-
-# Improved cleaning algorithm: 2025-04-17 21:29:56
-
-# Improved cleaning algorithm: 2025-04-17 21:29:57

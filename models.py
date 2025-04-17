@@ -3,7 +3,6 @@ from sqlalchemy.sql import func
 from db import db
 
 class CleaningJob(db.Model):
-    """Table for tracking file uploads and cleaning operations"""
     id = db.Column(db.Integer, primary_key=True)
     job_name = db.Column(db.String(100), nullable=False)
     original_filename = db.Column(db.String(255))
@@ -14,12 +13,11 @@ class CleaningJob(db.Model):
     missing_values_filled = db.Column(db.Integer)
     duplicates_removed = db.Column(db.Integer)
     created_at = db.Column(db.DateTime, server_default=func.now())
-    
+
     def __repr__(self):
         return f'<CleaningJob {self.job_name}>'
-    
+
     def to_dict(self):
-        """Convert job to dictionary for JSON serialization"""
         return {
             'id': self.id,
             'job_name': self.job_name,
