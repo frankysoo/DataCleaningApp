@@ -264,7 +264,12 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 🙏 Acknowledgements
 
-Thanks to all the open-source libraries that made this project possible.
+Thanks to all the open-source libraries that made this project possible:
+
+- Flask: Web framework
+- Pandas: Data processing
+- Bootstrap: UI components
+- Chart.js: Data visualization
 
 <!-- Updated documentation: 2025-04-17 20:28:34 -->
 
