@@ -109,12 +109,24 @@ Before setting up the project, make sure your system has the following installed
    - Set the `DATABASE_URL` environment variable to your PostgreSQL connection string
      Format: `postgresql://username:password@localhost/database_name`
 
-3. **Set environment variables (Optional)**
+3. **Set environment variables**
 
-   You can customize the application by setting these environment variables:
+   Create a `.env` file in the project root directory with the following variables:
 
-   - `DATABASE_URL`: The connection string for your database (defaults to SQLite if not set)
-   - `SESSION_SECRET`: A secure random key for session encryption (defaults to a development key if not set)
+   ```
+   # Database configuration (optional)
+   DATABASE_URL=sqlite:///app.db
+
+   # Session security (optional)
+   SESSION_SECRET=your-secure-random-key
+
+   # Google Gemini API Key (required for AI recommendations)
+   GEMINI_API_KEY=your-gemini-api-key
+   ```
+
+   You can get a Gemini API key from the [Google AI Studio](https://makersuite.google.com/app/apikey).
+
+   **IMPORTANT:** Never commit your `.env` file to version control. It contains sensitive information.
 
 4. **Initialize the database**
 

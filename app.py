@@ -15,8 +15,9 @@ from db import db
 from models import CleaningJob
 from ai_service import AICleaningAdvisor
 
-# Initialize the AI service with the Gemini API key
-ai_advisor = AICleaningAdvisor(api_key="AIzaSyACTutapfeEZAMYv7J_TNuOk41qVd_-398")
+# Initialize the AI service with the Gemini API key from environment variable
+# This avoids hardcoding sensitive credentials in the source code
+ai_advisor = AICleaningAdvisor()
 
 def pandas_to_json_safe(df, orient='records'):
     """Convert pandas DataFrame to JSON-safe dictionary with proper handling of NaN, None, etc."""
