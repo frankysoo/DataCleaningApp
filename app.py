@@ -13,6 +13,10 @@ import data_loader
 import cleaner
 from db import db
 from models import CleaningJob
+from ai_service import AICleaningAdvisor
+
+# Initialize the AI service with the Gemini API key
+ai_advisor = AICleaningAdvisor(api_key="AIzaSyACTutapfeEZAMYv7J_TNuOk41qVd_-398")
 
 def pandas_to_json_safe(df, orient='records'):
     """Convert pandas DataFrame to JSON-safe dictionary with proper handling of NaN, None, etc."""
@@ -199,6 +203,11 @@ def use_sample(filename):
                 os.remove(upload_path)
             return jsonify({'error': 'Could not extract data from the sample file. The file might be corrupt or in an unsupported format.'}), 500
 
+        # Get AI recommendations
+        logger.info("Getting AI cleaning recommendations for sample file")
+        ai_recommendations = ai_advisor.get_cleaning_recommendations(merged_df)
+        logger.info(f"AI recommendations received for sample file: {ai_recommendations is not None}")
+
         try:
             # Get sample of original data (first 5 rows) using our custom function
             preview_df = merged_df.head(5)
@@ -320,7 +329,8 @@ def use_sample(filename):
             'original_columns': column_info,
             'cleaned_columns': cleaned_column_info,
             'stats': cleaning_stats,
-            'job_id': job_id
+            'job_id': job_id,
+            'ai_recommendations': ai_recommendations
         }), 200
 
     except Exception as e:
@@ -457,6 +467,12 @@ def upload_file():
                         except Exception as e:
                             logger.error(f"Error removing file {filepath}: {e}")
                     return jsonify({'error': 'Could not extract data from the uploaded files. Please check file contents and try again.'}), 400
+
+                # Get AI recommendations
+                logger.info("Getting AI cleaning recommendations")
+                ai_recommendations = ai_advisor.get_cleaning_recommendations(merged_df)
+                logger.info(f"AI recommendations received: {ai_recommendations is not None}")
+
             except Exception as e:
                 logger.error(f"Error in load_and_merge_data: {e}", exc_info=True)
                 # Clean up any saved files before returning error
@@ -577,7 +593,8 @@ def upload_file():
                 'original_columns': column_info,
                 'cleaned_columns': cleaned_column_info,
                 'stats': cleaning_stats,
-                'job_id': job_id
+                'job_id': job_id,
+                'ai_recommendations': ai_recommendations
             }), 200
 
         except Exception as e:
@@ -604,6 +621,15 @@ def download_file(filename):
     except FileNotFoundError:
         logger.error(f"File not found: {filename}")
         return jsonify({'error': 'File not found'}), 404
+
+@bp.route('/docs/<path:filename>')
+def documentation(filename):
+    """Serve documentation files"""
+    try:
+        return send_from_directory('docs', filename)
+    except FileNotFoundError:
+        logger.error(f"Documentation file not found: {filename}")
+        return jsonify({'error': 'Documentation not found'}), 404
 
 # Initialize function to register our Blueprint with a Flask app
 def init_app(app):
